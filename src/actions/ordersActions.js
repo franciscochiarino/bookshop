@@ -18,7 +18,7 @@ export function fetchOrders() {
 }
 
 export function postOrderAndPutUser(bookId, userId) {
-    return async function(dispatch) {
+    return function(dispatch) {
 
         dispatch({ type: 'POST_ORDER_AND_PUT_USER' });
 
@@ -32,19 +32,32 @@ export function postOrderAndPutUser(bookId, userId) {
             body: JSON.stringify(order)
         };
 
-        const postOrderRes = await fetch('http://localhost:3001/orders', post);
-        const postOrderData = await postOrderRes.json();
-        console.log('res from post order:', postOrderData);
+        // Start post request
+        fetch('http://localhost:3001/orders', post)
 
-        // Set put request options
-        let put = {
-            method: 'PUT',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify({ push: {orders: postOrderData.order._id}})
-        };
-
-        const putUserRes = await fetch(`http://localhost:3001/users/${userId}`, put);
-        const putUserData = await putUserRes.json();
-        console.log('res from put user:', putUserData);
+            .then(postOrderRes => postOrderRes.json())
+            .then(postOrderData => {
+                console.log('res from post order:', postOrderData);
+                // Set put request options
+                let put = {
+                    method: 'PUT',
+                    headers: {'content-type': 'application/json'},
+                    body: JSON.stringify({ $push: {orders: postOrderData.order._id}})
+                };
+                return put
+            })
+            // Start put request
+            .then(put => fetch(`http://localhost:3001/users/${userId}`, put))
+            .then(putUserRes => putUserRes.json())
+            .then(putUserData => {
+                dispatch({ type: 'POST_ORDER_AND_PUT_USER_FULFILLED' })
+                console.log('res from put user:', putUserData);
+            })
+            .catch(err => {
+                dispatch({ 
+                    type: 'POST_ORDER_AND_PUT_USER_REJECTED',
+                    payload: err
+                })
+            })
     }
 }
