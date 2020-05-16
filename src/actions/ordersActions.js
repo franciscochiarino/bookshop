@@ -1,18 +1,18 @@
-export function fetchOrders() {
+export function getOrders() {
     return function(dispatch) {
 
-        dispatch({ type: 'FETCH_ORDERS '});
+        dispatch({ type: 'GET_ORDERS '});
 
         fetch('http://localhost:3001/orders')
             .then(res => res.json())
             .then(data => {
                 dispatch({
-                    type: 'FETCH_ORDERS_FULFILLED',
+                    type: 'GET_ORDERS_FULFILLED',
                     payload: data.orders 
                 })
             })
             .catch(err => {
-                dispatch({ type: 'FETCH_ORDERS_REJECTED', payload: err})
+                dispatch({ type: 'GET_ORDERS_REJECTED', payload: err})
             })
     }
 }

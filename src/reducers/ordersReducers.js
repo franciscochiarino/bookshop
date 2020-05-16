@@ -9,13 +9,13 @@ export default function reducer(state = initialState, action) {
 
     switch(action.type) {
 
-        case 'FETCH_ORDERS':
+        case 'GET_ORDERS':
             return {...state, fetching: true}
 
-        case 'FETCH_ORDERS_REJECTED':
+        case 'GET_ORDERS_REJECTED':
             return {...state, fetching: false, error: action.payload}
 
-        case 'FETCH_ORDERS_FULFILLED':
+        case 'GET_ORDERS_FULFILLED':
             return {...state,
                 fetching: false,
                 fetched: true,
