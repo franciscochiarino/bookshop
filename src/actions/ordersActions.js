@@ -18,7 +18,7 @@ export function fetchOrders() {
 }
 
 export function postOrderAndPutUser(bookId, userId) {
-    return function(dispatch) {
+    return async function(dispatch) {
 
         dispatch({ type: 'POST_ORDER_AND_PUT_USER' });
 
@@ -32,35 +32,19 @@ export function postOrderAndPutUser(bookId, userId) {
             body: JSON.stringify(order)
         };
 
+        const postOrderRes = await fetch('http://localhost:3001/orders', post);
+        const postOrderData = await postOrderRes.json();
+        console.log('res from post order:', postOrderData);
+
         // Set put request options
         let put = {
             method: 'PUT',
             headers: {'content-type': 'application/json'},
-            body: null
+            body: JSON.stringify({ push: {orders: postOrderData.order._id}})
         };
 
-        // Post order
-        fetch('http://localhost:3001/orders', post)
-            .then(res => res.json())
-            // TODO: definir body directamente en la linea 44
-            .then(data => {
-                put.body = JSON.stringify({$push: {orders:data.order._id}})
-                console.log('res from post order:', data)
-                console.log('put options:', put)
-            })
-            .catch(err => {
-                dispatch({ type: 'POST_ORDER_AND_PUT_USER_REJECTED', payload: err })
-            })
-
-        // Put user
-        fetch(`http://localhost:3001/users/${userId}`, put)
-            .then(res => res.json())
-            .then(userData => {
-                console.log('res from put user:', userData)
-                dispatch({ type: 'POST_ORDER_AND_PUT_USER_FULFILLED' })
-            })
-            .catch(err => {
-                dispatch({ type: 'POST_ORDER_AND_PUT_USER_REJECTED', payload: err })
-            })
+        const putUserRes = await fetch(`http://localhost:3001/users/${userId}`, put);
+        const putUserData = await putUserRes.json();
+        console.log('res from put user:', putUserData);
     }
 }
