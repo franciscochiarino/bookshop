@@ -1,4 +1,4 @@
-export function fetchBooks() {
+export function getBooks() {
     return function(dispatch) {
 
         dispatch({ type: 'FETCH_BOOKS'})

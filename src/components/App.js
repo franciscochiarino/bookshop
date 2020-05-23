@@ -1,16 +1,13 @@
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { postOrderAndPutUser, getOrders } from '../actions/ordersActions';
+import { getBooks } from '../actions/booksActions';
 
 
 function App(props) {
     
     useEffect(() => {
-
-        props.dispatch(postOrderAndPutUser('5eb9a29b7eb43d3e8e7a9877', '5ebbca96e4600f46e6d68fc4'))
-        props.dispatch(getOrders())
-
+        props.dispatch(getBooks())
     }, [])
 
     return (
