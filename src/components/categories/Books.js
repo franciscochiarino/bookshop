@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import BookCard from './BookCard';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { getBooks } from '../../actions/booksActions';
+import { postOrderAndPutUser } from '../../actions/ordersActions';
 
 function Books(props) {
 
@@ -12,8 +13,12 @@ function Books(props) {
         }
     }, [])
 
-    const addToCart = () => {
-
+    const addToCart = (bookId, bookTitle) => {
+        if (!props.user.id) {
+            return alert('Please log in to purchase an item');
+        }
+        props.dispatch(postOrderAndPutUser(bookId, props.user.id))
+        alert(`A copy of ${bookTitle} has been added to your cart.`)
     }
 
     let books = [];
@@ -65,7 +70,8 @@ function Books(props) {
 
 const mapStateToProps = state => {
     return {
-        books: state.books.books
+        books: state.books.books,
+        user: state.user.user
     }
 };
 

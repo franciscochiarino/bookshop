@@ -13,7 +13,7 @@ export default function BookCard(props) {
                 <p className="cardPrice">${props.price}</p>
                 <div className="cardBtn">
                     <button className="overviewBtn"><Link to={`/books/book/${props.id}`}>Overview</Link></button>
-                    <button className="buyBtn" onClick={props.addToCart}>Add to cart</button>
+                    <button className="buyBtn" onClick={() => props.addToCart(props.id, props.title)}>Add to cart</button>
                 </div>
             </section>
         </div>
