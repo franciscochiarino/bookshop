@@ -1,6 +1,5 @@
-export function login(e, email, password) {
+export function login(email, password) {
     return function(dispatch) {
-        e.preventDefault()
         dispatch({ type: 'LOGIN' })
 
         // Data to be posted
@@ -31,5 +30,11 @@ export function login(e, email, password) {
                 dispatch({ type: 'LOGIN_REJECTED', payload: err })
             })
             
+    }
+}
+
+export function getUser() {
+    return function(dispatch) {
+        
     }
 }

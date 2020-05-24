@@ -8,6 +8,12 @@ function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const userLogin = e => {
+        e.preventDefault();
+        props.dispatch(login(email, password));
+        props.setLogin(false);
+    }
+
     return (
         <section className="signUp">
 
@@ -17,7 +23,7 @@ function Login(props) {
                 <button className="closeSignUpBtn" onClick={() => props.setLogin(false)}>X</button>
             </div>
             <h3>Log In</h3>
-            <form onSubmit={(e) => props.dispatch(login(e, email, password))}>
+            <form onSubmit={userLogin}>
                 
                 <label htmlFor="email"></label>
                 <input type="text" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
