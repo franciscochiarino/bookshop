@@ -13,6 +13,7 @@ function Books(props) {
         }
     }, [])
 
+    // FIXME: Orders are added twice instead of incrementing the quantity
     const addToCart = (bookId, bookTitle) => {
         if (!props.user.id) {
             return alert('Please log in to purchase an item');
