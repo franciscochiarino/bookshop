@@ -1,15 +1,15 @@
 export function getBooks() {
     return function(dispatch) {
 
-        dispatch({ type: 'FETCH_BOOKS'})
+        dispatch({ type: 'GET_BOOKS'})
 
         fetch('http://localhost:3001/books')
             .then(response => response.json())
             .then(data => {
-                dispatch({ type: 'FETCH_BOOKS_FULFILLED', payload: data.books})
+                dispatch({ type: 'GET_BOOKS_FULFILLED', payload: data.books})
             })
             .catch(err => {
-                dispatch({ type: 'FETCH_BOOKS_REJECTED', payload: err})
+                dispatch({ type: 'GET_BOOKS_REJECTED', payload: err})
             })
     }
 }

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BookCard from './BookCard';
 import {connect} from 'react-redux';
+import { getBooks } from '../../actions/booksActions';
 
 function Books(props) {
+
+    useEffect(() => {
+        props.dispatch(getBooks());
+    }, [])
 
     let books = [];
 

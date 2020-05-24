@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import cover from '../assets/books-1097_231.png';
-import settingsIcon from '../assets/settings-icon.png';
-import logoutIcon from '../assets/logout-icon.png';
-import shippingIcon from '../assets/shipped.png';
-import cartIcon from '../assets/shopping-cart.png';
-import wishListIcon from '../assets/wish-list.png';
-import Cart from './Cart';
+import cover from '../../assets/books-1097_231.png';
+import settingsIcon from '../../assets/settings-icon.png';
+import logoutIcon from '../../assets/logout-icon.png';
+import shippingIcon from '../../assets/shipped.png';
+import cartIcon from '../../assets/shopping-cart.png';
+import wishListIcon from '../../assets/wish-list.png';
+import Cart from '../user/Cart';
 
 function UserProfile(props) {
 

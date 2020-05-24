@@ -1,5 +1,5 @@
 import React from 'react'
-import hero from '../assets/hero_1920x1280.jpg';
+import hero from '../../assets/hero_1920x1280.jpg';
 
 export default function Home() {
     return (
