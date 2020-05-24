@@ -6,26 +6,27 @@ import { getBooks } from '../../actions/booksActions';
 function Books(props) {
 
     useEffect(() => {
-        props.dispatch(getBooks());
+        console.log('[Books useEffect]')
+        props.dispatch(getBooks())
     }, [])
 
     let books = [];
 
     switch(props.match.params.genre) {
         case 'favorites':
-            books = props.state.books.filter(({favorite}) => favorite === true);
+            books = props.books.filter(({favorite}) => favorite === true);
             break;
         case 'fiction':
-            books = props.state.books.filter(({genre}) => genre === 'Fiction');
+            books = props.books.filter(({genre}) => genre === 'Fiction');
             break;
         case 'mystery':
-            books = props.state.books.filter(({genre}) => genre === 'Mystery');
+            books = props.books.filter(({genre}) => genre === 'Mystery');
             break;
         case 'tech':
-            books = props.state.books.filter(({genre}) => genre === 'Tech');
+            books = props.books.filter(({genre}) => genre === 'Tech');
             break;
         case 'biography':
-            books = props.state.books.filter(({genre}) => genre === 'Biography');
+            books = props.books.filter(({genre}) => genre === 'Biography');
             break;
         default:
             return
@@ -56,7 +57,9 @@ function Books(props) {
 }
 
 const mapStateToProps = state => {
-    return {state}
+    return {
+        books: state.books.books
+    }
 };
 
 export default connect(mapStateToProps)(Books);

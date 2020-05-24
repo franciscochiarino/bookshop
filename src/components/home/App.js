@@ -10,6 +10,7 @@ import Login from './Login';
 import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
 import {connect} from 'react-redux';
+import { login } from '../../actions/userActions'
 
 function App(props) {
 
@@ -17,39 +18,12 @@ function App(props) {
     const [login, setLogin] = useState(false);
 
     useEffect(() => {
-
-        console.log(props)
-
-    }, []);
-
-    // const getUser = async () => {
-    //     const data = sessionStorage.getItem('user');
-    //     if (data) {
-    //         // Get id from session storage
-    //         const id = JSON.parse(data);
-    //         // Get user from db
-    //         const response = await fetch(`http://localhost:3001/users/${id}`);
-    //         const dataFromDB = await response.json();
-
-    //         if (dataFromDB.user) {
-    //             props.dispatch({
-    //                 type: 'STORE_USER',
-    //                 payload: dataFromDB.user
-    //             })
-    //         }
-    //     }
-    // }
-
-    // const getBooks = async () => {
-    //     // Get books from database
-    //     const response = await fetch('http://localhost:3001/books');
-    //     const data = await response.json();
-    //     // Store in state
-    //     props.dispatch({
-    //         type: 'STORE_BOOKS',
-    //         payload: data.books
-    //     })
-    // };
+        console.log('[App useEffect]')
+        // const data = sessionStorage.getItem('user');
+        // if (data) {
+        //     props.dispatch(getUser())
+        // }
+    }, [])
 
     return (
         <div className="App">
@@ -81,7 +55,7 @@ function App(props) {
 
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/books/:genre' component={Books} />
+                    <Route exact path='/books/:genre' render={(props) => <Books {...props} />} />
                     <Route exact path='/books/book/:id' component={BookOverview} />
                     <Route exact path='/users/user' component={UserProfile} />
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />

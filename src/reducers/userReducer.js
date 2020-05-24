@@ -8,6 +8,20 @@ const initialState = {
 export default function reducer(state = initialState, action) {
 
     switch(action.type) {
+
+        case 'LOGIN':
+            return {...state, fetching: true}
+
+        case 'LOGIN_REJECTED':
+            return {...state, fetching: false, error: action.payload}
+
+        case 'LOGIN_FULFILLED':
+            return {...state, 
+                fetching: false,
+                fetched: true,
+                user: action.payload    
+            }
+            
         default:
             return state
     }
