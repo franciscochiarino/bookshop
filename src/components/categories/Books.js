@@ -12,6 +12,10 @@ function Books(props) {
         }
     }, [])
 
+    const addToCart = () => {
+
+    }
+
     let books = [];
 
     switch(props.match.params.genre) {
@@ -45,6 +49,7 @@ function Books(props) {
                 published={book.published}
                 quote={book.quote}
                 price={book.price}
+                addToCart={addToCart}
             />
         )
     })

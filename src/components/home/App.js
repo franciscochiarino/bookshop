@@ -1,7 +1,10 @@
 
 import React from 'react';
-import {useState, useEffect} from 'react';
-import {BrowserRouter, NavLink, Route, Switch, Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions/userActions'
+// Components
 import Home from './Home';
 import Books from '../categories/Books';
 import BookOverview from '../categories/BookOverview';
@@ -9,8 +12,6 @@ import SignUpForm from './SignUpForm';
 import Login from './Login';
 import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
-import {connect} from 'react-redux';
-import { getUser } from '../../actions/userActions'
 
 function App(props) {
 
