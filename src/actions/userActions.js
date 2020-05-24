@@ -33,8 +33,17 @@ export function login(email, password) {
     }
 }
 
-export function getUser() {
+export function getUser(id) {
     return function(dispatch) {
-        
+        dispatch({ type: 'GET_USER'})
+
+        fetch(`http://localhost:3001/users/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                dispatch({ type: 'GET_USER_FULFILLED', payload: data.user })
+            })
+            .catch(err => {
+                dispatch({ type: 'GET_USER_REJECTED', payload: err})
+            })
     }
 }

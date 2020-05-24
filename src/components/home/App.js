@@ -10,7 +10,7 @@ import Login from './Login';
 import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
 import {connect} from 'react-redux';
-import { login } from '../../actions/userActions'
+import { getUser } from '../../actions/userActions'
 
 function App(props) {
 
@@ -19,10 +19,11 @@ function App(props) {
 
     useEffect(() => {
         console.log('[App useEffect]')
-        // const data = sessionStorage.getItem('user');
-        // if (data) {
-        //     props.dispatch(getUser())
-        // }
+        const data = sessionStorage.getItem('user');
+        if (data) {
+            const id = JSON.parse(data);
+            props.dispatch(getUser(id));
+        }
     }, [])
 
     return (
@@ -40,7 +41,7 @@ function App(props) {
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/biography'>BIOGRAPHY</NavLink>
                             </div>
                             <div>
-                                {props.state.user.email ? 
+                                {props.user.email ? 
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }
@@ -67,7 +68,9 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-    return {state}
+    return {
+        user: state.user.user
+    }
 };
 
 export default connect(mapStateToProps)(App);

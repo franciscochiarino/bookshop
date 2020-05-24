@@ -7,7 +7,9 @@ function Books(props) {
 
     useEffect(() => {
         console.log('[Books useEffect]')
-        props.dispatch(getBooks())
+        if (props.books.length === 0) {
+            props.dispatch(getBooks())
+        }
     }, [])
 
     let books = [];
