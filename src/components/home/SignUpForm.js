@@ -1,7 +1,9 @@
 import React from 'react'
-import {useState} from 'react';
+import { useState } from 'react';
+import { postUser } from '../../actions/userActions';
+import { connect } from 'react-redux';
 
-export default function(props) {
+function SignUpForm(props) {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -10,29 +12,15 @@ export default function(props) {
 
     const addUser = async e => {
         e.preventDefault();
-        
-        // Define request body
-        const user = {
-            firstName,
-            lastName,
-            email,
-            password
-        };
 
-        // Set options
-        const options = {
-            method: 'POST',
-            headers: { 
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        };
+        // Check if user is logded in
+        const data = sessionStorage.getItem('user');
+        if (data) {
+            return alert('You are already logded in');
+        }
 
-        const response = await fetch('http://localhost:3001/users', options);
-        const data = await response.json();
-        console.log('Response from SignUpForm:', data);
+        props.dispatch(postUser(firstName, lastName, email, password));
         props.setSignUp(false);
-
     }
 
     return (
@@ -59,3 +47,11 @@ export default function(props) {
         </section>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.user.user
+    }
+}
+
+export default connect(mapStateToProps)(SignUpForm);

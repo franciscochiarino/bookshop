@@ -26,6 +26,14 @@ function App(props) {
         }
     }, [])
 
+    const openSignUp = () => {
+        const data = sessionStorage.getItem('user');
+        if (data) {
+            return alert('You are already logged in');
+        }
+        setSignUp(true)
+    }
+
     return (
         <div className="App">
             <BrowserRouter>
@@ -45,7 +53,7 @@ function App(props) {
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }
-                                <button className="userLink" onClick={() => setSignUp(true)}>SIGN UP</button>
+                                <button className="userLink" onClick={openSignUp}>SIGN UP</button>
                             </div>
                         </nav>
                 </header>
