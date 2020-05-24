@@ -3,12 +3,12 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {BrowserRouter, NavLink, Route, Switch, Link} from 'react-router-dom';
 import Home from './Home';
-import Books from './Books';
-import BookOverview from './BookOverview';
+import Books from '../categories/Books';
+import BookOverview from '../categories/BookOverview';
 import SignUpForm from './SignUpForm';
 import Login from './Login';
-import UserProfile from './UserProfile';
-import AdminSettings from './AdminSettings';
+import UserProfile from '../user/UserProfile';
+import AdminSettings from '../admin/AdminSettings';
 import {connect} from 'react-redux';
 
 function App(props) {
@@ -18,39 +18,38 @@ function App(props) {
 
     useEffect(() => {
 
-        getBooks();
-        getUser();
+        console.log(props)
 
-    }, [props.state.updateUser, props.state.updateBooks]);
+    }, []);
 
-    const getUser = async () => {
-        const data = sessionStorage.getItem('user');
-        if (data) {
-            // Get id from session storage
-            const id = JSON.parse(data);
-            // Get user from db
-            const response = await fetch(`http://localhost:3001/users/${id}`);
-            const dataFromDB = await response.json();
+    // const getUser = async () => {
+    //     const data = sessionStorage.getItem('user');
+    //     if (data) {
+    //         // Get id from session storage
+    //         const id = JSON.parse(data);
+    //         // Get user from db
+    //         const response = await fetch(`http://localhost:3001/users/${id}`);
+    //         const dataFromDB = await response.json();
 
-            if (dataFromDB.user) {
-                props.dispatch({
-                    type: 'STORE_USER',
-                    payload: dataFromDB.user
-                })
-            }
-        }
-    }
+    //         if (dataFromDB.user) {
+    //             props.dispatch({
+    //                 type: 'STORE_USER',
+    //                 payload: dataFromDB.user
+    //             })
+    //         }
+    //     }
+    // }
 
-    const getBooks = async () => {
-        // Get books from database
-        const response = await fetch('http://localhost:3001/books');
-        const data = await response.json();
-        // Store in state
-        props.dispatch({
-            type: 'STORE_BOOKS',
-            payload: data.books
-        })
-    };
+    // const getBooks = async () => {
+    //     // Get books from database
+    //     const response = await fetch('http://localhost:3001/books');
+    //     const data = await response.json();
+    //     // Store in state
+    //     props.dispatch({
+    //         type: 'STORE_BOOKS',
+    //         payload: data.books
+    //     })
+    // };
 
     return (
         <div className="App">
