@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookCard from './BookCard';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/booksActions';
 import { postOrderAndPutUser } from '../../actions/ordersActions';
+import { Redirect, Route } from 'react-router-dom';
+import BookOverview from './BookOverview';
 
 function Books(props) {
+
+    const [display, setDisplay] = useState('cards');
 
     useEffect(() => {
         console.log('[Books useEffect]')
@@ -13,13 +17,26 @@ function Books(props) {
         }
     }, [])
 
+    useEffect(() => {
+        setDisplay('cards')
+    })
+
     // FIXME: Orders are added twice instead of incrementing the quantity
+    
     const addToCart = (bookId, bookTitle) => {
         if (!props.user.id) {
             return alert('Please log in to purchase an item');
         }
         props.dispatch(postOrderAndPutUser(bookId, props.user.id))
         alert(`A copy of ${bookTitle} has been added to your cart.`)
+    }
+
+    const overview = (bookId) => {
+        console.log('Book id:', bookId)
+        setDisplay('overview')
+        return (
+            <BookOverview />
+        )
     }
 
     let books = [];
@@ -56,15 +73,24 @@ function Books(props) {
                 quote={book.quote}
                 price={book.price}
                 addToCart={addToCart}
+                overview={overview}
             />
         )
     })
 
     return (
         <div>
-            <section className="booksContainer">
-                {bookCards}
-            </section>
+            {display === 'cards' ?
+                <section className="booksContainer">
+                    {bookCards}
+                </section>
+            :
+                <section>
+                    <Redirect to="/books/book" />
+                    <Route exact path='/books/book' render={ (props) => <BookOverview {...props} /> } />
+                </section>
+            }   
+            
         </div>
     )
 }

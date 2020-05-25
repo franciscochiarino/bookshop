@@ -32,7 +32,7 @@ export function postOrderAndPutUser(bookId, userId) {
             body: JSON.stringify(order)
         };
 
-        // Start post request
+        // Post order
         fetch('http://localhost:3001/orders', post)
 
             .then(postOrderRes => postOrderRes.json())

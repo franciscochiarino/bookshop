@@ -65,8 +65,8 @@ function App(props) {
 
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/books/:genre' render={(props) => <Books {...props} />} />
-                    <Route exact path='/books/book/:id' component={BookOverview} />
+                    <Route exact path='/books/:genre' component={Books} />
+                    <Route exact path='/books/book' render={ (props) => <BookOverview {...props} /> } />
                     <Route exact path='/users/user' component={UserProfile} />
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
@@ -78,7 +78,8 @@ function App(props) {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.user
+        user: state.user.user,
+        books: state.books.books
     }
 };
 
