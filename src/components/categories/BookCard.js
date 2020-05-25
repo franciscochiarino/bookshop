@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BookCard(props) {
 
@@ -11,7 +12,7 @@ export default function BookCard(props) {
                 <q>{props.quote}</q>
                 <p className="cardPrice">${props.price}</p>
                 <div className="cardBtn">
-                    <button className="overviewBtn" onClick={() => props.overview(props.id)}>Overview</button>
+                    <button className="overviewBtn"><Link to={`/books/book/${props.id}`}>Overview</Link></button>
                     <button className="buyBtn" onClick={() => props.addToCart(props.id, props.title)}>Add to cart</button>
                 </div>
             </section>

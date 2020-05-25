@@ -4,11 +4,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 // Actions
 import { getUser } from '../../actions/userActions'
 import { postOrderAndPutUser } from '../../actions/ordersActions';
-
+import { getBooks } from '../../actions/booksActions';
 // Components
 import Home from './Home';
 import Books from '../categories/Books';
@@ -48,13 +47,7 @@ function App(props) {
         props.dispatch(postOrderAndPutUser(bookId, props.user.id))
         alert(`A copy of ${bookTitle} has been added to your cart.`)
     }
-
-    const overview = (bookId) => {
-        console.log('Book id:', bookId)
-    }
     
-
-
     return (
         <div className="App">
             <BrowserRouter>
@@ -90,18 +83,18 @@ function App(props) {
                     <Route exact path='/' component={Home} />
 
                     <Route exact path='/books/:genre' 
-                        render={ (props) => <Books {...props} addToCart={addToCart} overview={overview} /> } 
+                        render={ (props) => <Books {...props} addToCart={addToCart} /> } 
                     />
 
-                    <Route exact path='/books/book' 
-                        render={ (props) => <BookOverview {...props} addToCart={addToCart} overview={overview} /> } 
+                    <Route exact path='/books/book/:id' 
+                        render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } 
                     />
-
+                    
                     <Route exact path='/users/user' component={UserProfile} />
 
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
-                
+
             </BrowserRouter>
         </div>
     );
@@ -110,7 +103,6 @@ function App(props) {
 const mapStateToProps = state => {
     return {
         user: state.user.user,
-        books: state.books.books
     }
 };
 
