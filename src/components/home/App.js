@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 // Actions
 import { getUser } from '../../actions/userActions'
 import { postOrderAndPutUser } from '../../actions/ordersActions';
-import { getBooks } from '../../actions/booksActions';
 // Components
 import Home from './Home';
 import Books from '../categories/Books';
