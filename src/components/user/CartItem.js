@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
-import {connect} from 'react-redux';
+import React from 'react'
 
-function CartItem(props) {
+export default function CartItem(props) {
 
     // Get book from state
-    const book = props.state.books.find(book => book._id === props.bookId);
-    
+    const book = props.books.find(book => book._id === props.bookId);
+
     return (
         <div className="cartItemCard">
             <img src={`http://localhost:3001/books/cover/${book.cover}`} height="180" alt=""/>
@@ -21,8 +20,4 @@ function CartItem(props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {state}
-}
-
-export default connect(mapStateToProps)(CartItem)
+// FIXME: If you login and go directly to account, it crashes [err: book is not defined]

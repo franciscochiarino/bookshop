@@ -1,15 +1,19 @@
 import React from 'react'
 import CartItem from './CartItem';
 
-function Cart(props) {
+export default function Cart(props) {
 
-    const cartItems = props.state.user.orders.map((order, i) => {
+    // Wait for user.orders
+    if (!props.user.orders) { return <h3>Loading...</h3> }
+
+    const cartItems = props.user.orders.map((order, i) => {
         return (
             <CartItem
                 key={i}
                 quantity={order.quantity}
                 bookId={order.book}
                 date={order.date}
+                books={props.books}
             />
         )
     })
