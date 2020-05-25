@@ -1,9 +1,14 @@
 
+// Modules
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+// Actions
 import { getUser } from '../../actions/userActions'
+import { postOrderAndPutUser } from '../../actions/ordersActions';
+
 // Components
 import Home from './Home';
 import Books from '../categories/Books';
@@ -35,12 +40,29 @@ function App(props) {
         setSignUp(true)
     }
 
+    // FIXME: Orders are added twice instead of incrementing the quantity
+    const addToCart = (bookId, bookTitle) => {
+        if (!props.user.id) {
+            return alert('Please log in to purchase an item');
+        }
+        props.dispatch(postOrderAndPutUser(bookId, props.user.id))
+        alert(`A copy of ${bookTitle} has been added to your cart.`)
+    }
+
+    const overview = (bookId) => {
+        console.log('Book id:', bookId)
+    }
+    
+
+
     return (
         <div className="App">
             <BrowserRouter>
+
                 <header>
                     <h1>BOOKSHOP</h1>
                         <nav>
+                            {/* Nav Links */}
                             <div>
                                 <NavLink className="navLink" activeClassName="navActive" to='/'>HOME</NavLink>
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/favorites'>FAVORITES</NavLink>
@@ -63,14 +85,23 @@ function App(props) {
                 {signUp ? <SignUpForm setSignUp={setSignUp} /> : null}
                 {login ? <Login setLogin={setLogin} /> : null}
 
+                {/* Routes */}
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/books/:genre' component={Books} />
-                    <Route exact path='/books/book' render={ (props) => <BookOverview {...props} /> } />
+
+                    <Route exact path='/books/:genre' 
+                        render={ (props) => <Books {...props} addToCart={addToCart} overview={overview} /> } 
+                    />
+
+                    <Route exact path='/books/book' 
+                        render={ (props) => <BookOverview {...props} addToCart={addToCart} overview={overview} /> } 
+                    />
+
                     <Route exact path='/users/user' component={UserProfile} />
+
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
-
+                
             </BrowserRouter>
         </div>
     );
