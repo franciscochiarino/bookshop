@@ -28,7 +28,7 @@ function App(props) {
             const id = JSON.parse(data);
             props.dispatch(getUser(id));
         }
-    }, [])
+    }, [props.orders.fetched])
 
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');
@@ -47,7 +47,7 @@ function App(props) {
 
         // Check if user already has the book in the cart
         const order = props.user.orders.find(order => order.book === bookId);
-        console.log(order._id)
+
         if (order) {
             // Update order quantity
             props.dispatch(updateOrderQuantity(order._id, order.quantity))
@@ -58,9 +58,6 @@ function App(props) {
             props.dispatch(postOrderAndPutUser(bookId, props.user.id))
             alert(`A copy of ${bookTitle} has been added to your cart.`) 
         } 
-
-        // FIXME: Make everything asynchronous
-        // props.dispatch(getUser(props.user.id));
     }
     
     return (
@@ -80,7 +77,7 @@ function App(props) {
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/biography'>BIOGRAPHY</NavLink>
                             </div>
                             <div>
-                                {props.user.email ? 
+                                {props.user ? 
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }
@@ -118,6 +115,7 @@ function App(props) {
 const mapStateToProps = state => {
     return {
         user: state.user.user,
+        orders: state.orders
     }
 };
 

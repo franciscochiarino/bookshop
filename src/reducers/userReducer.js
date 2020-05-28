@@ -2,7 +2,8 @@ const initialState = {
     user: {},
     fetching: false,
     fetched: false,
-    error: null
+    error: null,
+    shouldUserUpdate: 0
 }
 
 export default function reducer(state = initialState, action) {

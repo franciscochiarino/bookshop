@@ -44,6 +44,7 @@ export default function reducer(state = initialState, action) {
             return {...state, 
                 fetching: false,
                 fetched: true,
+                // shouldUserUpdate: state.shouldUserUpdate++
             }
 
         default:
