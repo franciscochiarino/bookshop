@@ -43,8 +43,7 @@ export default function reducer(state = initialState, action) {
         case 'UPDATE_ORDER_QUANTITY_FULFILLED':
             return {...state, 
                 fetching: false,
-                fetched: true,
-                // shouldUserUpdate: state.shouldUserUpdate++
+                fetched: true
             }
 
         default:
