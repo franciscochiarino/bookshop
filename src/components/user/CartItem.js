@@ -2,9 +2,10 @@ import React from 'react'
 
 export default function CartItem(props) {
 
-    // Get book from state
     const book = props.books.find(book => book._id === props.bookId);
 
+    if (!book) {return <h2>Loading...</h2> }
+    
     return (
         <div className="cartItemCard">
             <img src={`http://localhost:3001/books/cover/${book.cover}`} height="180" alt=""/>
@@ -19,5 +20,3 @@ export default function CartItem(props) {
         </div>
     )
 }
-
-// FIXME: If you login and go directly to account, it crashes [err: book is not defined]
