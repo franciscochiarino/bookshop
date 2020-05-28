@@ -25,7 +25,7 @@ export function postOrderAndPutUser(bookId, userId) {
         // Define order
         const order = { quantity: 1, book: bookId };
 
-        // Set post request options
+        // Options
         const post = {
             method: 'POST',
             headers: {'content-type': 'application/json'},
@@ -58,6 +58,31 @@ export function postOrderAndPutUser(bookId, userId) {
                     type: 'POST_ORDER_AND_PUT_USER_REJECTED',
                     payload: err
                 })
+            })
+    }
+}
+
+export function updateOrderQuantity(orderId, orderQuantity) {
+    return function(dispatch) {
+        dispatch({ type: 'UPDATE_ORDER_QUANTITY'});
+        orderQuantity = orderQuantity + 1;
+
+        // Options
+        const put = {
+            method: 'PUT',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({ quantity: orderQuantity })
+        }
+
+        // Update
+        fetch(`http://localhost:3001/orders/${orderId}`, put)
+            .then(res => res.json())
+            .then(data => {
+                dispatch({ type: 'UPDATE_ORDER_QUANTITY_FULFILLED' })
+                console.log(data);
+            })
+            .catch(err => {
+                dispatch({ type: 'UPDATE_ORDER_QUANTITY_REJECTED', payload: err })
             })
     }
 }

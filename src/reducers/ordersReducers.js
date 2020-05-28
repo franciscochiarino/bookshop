@@ -34,6 +34,18 @@ export default function reducer(state = initialState, action) {
                 fetched: true,
             }
 
+        case 'UPDATE_ORDER_QUANTITY':
+            return {...state, fetching: true}
+        
+        case 'UPDATE_ORDER_QUANTITY_REJECTED':
+            return {...state, feching: false, error: action.payload}
+        
+        case 'UPDATE_ORDER_QUANTITY_FULFILLED':
+            return {...state, 
+                fetching: false,
+                fetched: true,
+            }
+
         default:
             return state
     }

@@ -6,7 +6,7 @@ import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Actions
 import { getUser } from '../../actions/userActions'
-import { postOrderAndPutUser } from '../../actions/ordersActions';
+import { postOrderAndPutUser, updateOrderQuantity } from '../../actions/ordersActions';
 // Components
 import Home from './Home';
 import Books from '../categories/Books';
@@ -38,13 +38,29 @@ function App(props) {
         setSignUp(true)
     }
 
-    // FIXME: Orders are added twice instead of incrementing the quantity
     const addToCart = (bookId, bookTitle) => {
+
+        // Check if user is logged in
         if (!props.user.id) {
             return alert('Please log in to purchase an item');
         }
-        props.dispatch(postOrderAndPutUser(bookId, props.user.id))
-        alert(`A copy of ${bookTitle} has been added to your cart.`)
+
+        // Check if user already has the book in the cart
+        const order = props.user.orders.find(order => order.book === bookId);
+        console.log(order._id)
+        if (order) {
+            // Update order quantity
+            props.dispatch(updateOrderQuantity(order._id, order.quantity))
+            alert(`A copy of ${bookTitle} has been added to your order.`)
+
+        } else {
+            // Create new order
+            props.dispatch(postOrderAndPutUser(bookId, props.user.id))
+            alert(`A copy of ${bookTitle} has been added to your cart.`) 
+        } 
+
+        // FIXME: Make everything asynchronous
+        // props.dispatch(getUser(props.user.id));
     }
     
     return (
