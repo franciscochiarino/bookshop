@@ -11,6 +11,7 @@ export default function Cart(props) {
             <CartItem
                 key={i}
                 orderId={order._id}
+                userId={props.user.id}
                 quantity={order.quantity}
                 bookId={order.book}
                 date={order.date}

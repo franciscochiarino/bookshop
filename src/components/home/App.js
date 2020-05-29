@@ -60,8 +60,9 @@ function App(props) {
         } 
     }
 
-    const removeFromCart = orderId => {
+    const removeFromCart = (orderId, userId) => {
         console.log('[removeFromCart orderId: ', orderId);
+        console.log('[removeFromCart userId: ', userId);
     }
     
     return (
