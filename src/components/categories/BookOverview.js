@@ -17,10 +17,10 @@ export default function BookOverview(props) {
     }  
 
     // This trick is golden
-    if (!book) {return <h3>Loading...</h3>}
+    if (!book) {return null}
 
     return (
-        <section className="bookOverview">
+        <section className="BookOverview">
                 <div>
                 <img src={`http://localhost:3001/books/cover/${book.cover}`} alt={`${book.title} book cover`}/>
                 </div>

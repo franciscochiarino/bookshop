@@ -15,12 +15,10 @@ function Login(props) {
     }
 
     return (
-        <section className="signUp">
+        <section className="alert">
 
-            {/* {props.state.user.email ? <Redirect from="/" to="/users/user/" /> : null} */}
-
-            <div className="closeSignUp">
-                <button className="closeSignUpBtn" onClick={() => props.setLogin(false)}>X</button>
+            <div className="closeAlert">
+                <button className="closeAlertBtn" onClick={() => props.setLogin(false)}>X</button>
             </div>
             <h3>Log In</h3>
             <form onSubmit={userLogin}>

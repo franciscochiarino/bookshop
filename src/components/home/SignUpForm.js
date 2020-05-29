@@ -24,9 +24,9 @@ function SignUpForm(props) {
     }
 
     return (
-        <section className="signUp">
-            <div className="closeSignUp">
-                <button className="closeSignUpBtn" onClick={() => props.setSignUp(false)}>X</button>
+        <section className="alert">
+            <div className="closeAlert">
+                <button className="closeAlertBtn" onClick={() => props.setSignUp(false)}>X</button>
             </div>
             <h3>Create New Account</h3>
             <form onSubmit={addUser}>

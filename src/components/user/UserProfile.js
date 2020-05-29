@@ -26,10 +26,10 @@ function UserProfile(props) {
     }
 
     // Wait for books if fetching is needed
-    if (props.books.length === 0) {return <h3>Loading...</h3> } 
+    if (props.books.length === 0) {return null } 
 
         return (
-            <div>
+            <div className="UserProfile">
                 <section className="coverImg">
 
                     <img src={cover} alt="book store" className="cover" />

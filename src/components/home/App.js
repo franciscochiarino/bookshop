@@ -93,8 +93,8 @@ function App(props) {
                 </header>
 
                 {/* Signup and Login*/}
-                {signUp ? <SignUpForm setSignUp={setSignUp} /> : null}
-                {login ? <Login setLogin={setLogin} /> : null}
+                {signUp ? <div className="darkBg"> <SignUpForm setSignUp={setSignUp} /> </div> : null}
+                {login ? <div className="darkBg"> <Login setLogin={setLogin} /> </div> : null}
 
                 {/* Routes */}
                 <Switch>

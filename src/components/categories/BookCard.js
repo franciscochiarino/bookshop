@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function BookCard(props) {
 
     return (
-        <div className="bookCard">
+        <div className="BookCard">
             <img src={`http://localhost:3001/books/cover/${props.cover}`} height="276" alt={`${props.title} book cover`} />
             <section className="cardDescription">
                 <h3>{props.title}</h3>

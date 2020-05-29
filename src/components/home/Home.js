@@ -3,7 +3,7 @@ import hero from '../../assets/hero_1920x1280.jpg';
 
 export default function Home() {
     return (
-            <section className="home">
+            <section className="Home">
                 <img src={hero} alt="books next to the window in a sunny day"/>
                 <section className="heroTextbox">
                     <q>
