@@ -2,7 +2,8 @@ const initialState = {
     orders: [],
     fetching: false,
     fetched: false,
-    error: null
+    error: null,
+    shouldUserUpdate: 0
 }
 
 export default function reducer(state = initialState, action) {
@@ -32,6 +33,7 @@ export default function reducer(state = initialState, action) {
             return {...state, 
                 fetching: false,
                 fetched: true,
+                shouldUserUpdate: state.shouldUserUpdate + 1
             }
 
         case 'UPDATE_ORDER_QUANTITY':
@@ -43,7 +45,21 @@ export default function reducer(state = initialState, action) {
         case 'UPDATE_ORDER_QUANTITY_FULFILLED':
             return {...state, 
                 fetching: false,
-                fetched: true
+                fetched: true,
+                shouldUserUpdate: state.shouldUserUpdate + 1
+            }
+
+        case 'DELETE_ORDER_AND_PUT_USER':
+            return {...state, fetching: true}
+        
+        case 'DELETE_ORDER_AND_PUT_USER_REJECTED':
+            return {...state, fetching: false, error: action.payload}
+
+        case 'DELETE_ORDER_AND_PUT_USER_FULFILLED':
+            return {...state,
+                fetching: false,
+                fetched: true,
+                shouldUserUpdate: state.shouldUserUpdate + 1
             }
 
         default:

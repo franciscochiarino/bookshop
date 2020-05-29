@@ -86,3 +86,37 @@ export function updateOrderQuantity(orderId, orderQuantity) {
             })
     }
 }
+
+export function deleteOrderAndPutUser(orderId, userId) {
+    return function(dispatch) {
+        dispatch({ type: 'DELETE_ORDER_AND_PUT_USER' })
+
+        // Options
+        const deleteOptions = {
+            method: 'DELETE',
+            headers: {'content-type': 'application/json'},
+        }
+        const putOptions = {
+            method: 'PUT',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({ $pull: {orders: orderId} })
+        }
+
+        // Delete order
+        fetch(`http://localhost:3001/orders/${orderId}`, deleteOptions)
+            .then(deleteRes => deleteRes.json())
+            .then(deleteData => {
+                console.log('[order deleted]', deleteData.order);
+            })
+            // Put user
+            .then(() => fetch(`http://localhost:3001/users/${userId}`, putOptions))
+            .then(putRes => putRes.json())
+            .then(putData => {
+                console.log('[user put]', putData);
+                dispatch({ type: 'DELETE_ORDER_AND_PUT_USER_FULFILLED'})
+            })
+            .catch(err => {
+                dispatch({ type: 'DELETE_ORDER_AND_PUT_USER_REJECTED', payload: err })
+            })
+    }
+}

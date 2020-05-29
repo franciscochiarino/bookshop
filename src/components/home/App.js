@@ -6,7 +6,7 @@ import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Actions
 import { getUser } from '../../actions/userActions'
-import { postOrderAndPutUser, updateOrderQuantity } from '../../actions/ordersActions';
+import { postOrderAndPutUser, updateOrderQuantity, deleteOrderAndPutUser } from '../../actions/ordersActions';
 // Components
 import Home from './Home';
 import Books from '../categories/Books';
@@ -28,7 +28,7 @@ function App(props) {
             const id = JSON.parse(data);
             props.dispatch(getUser(id));
         }
-    }, [props.orders.fetched])
+    }, [props.orders.shouldUserUpdate])
 
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');
@@ -61,8 +61,9 @@ function App(props) {
     }
 
     const removeFromCart = (orderId, userId) => {
-        console.log('[removeFromCart orderId: ', orderId);
-        console.log('[removeFromCart userId: ', userId);
+        if (window.confirm('Are you sure you want to delete this order?')) {
+            props.dispatch(deleteOrderAndPutUser(orderId, userId));
+        }
     }
     
     return (

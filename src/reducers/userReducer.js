@@ -3,7 +3,6 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    shouldUserUpdate: 0
 }
 
 export default function reducer(state = initialState, action) {
