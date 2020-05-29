@@ -32,7 +32,7 @@ export default function BookOverview(props) {
                     <p className="price">${book.price}</p>
                     <div className="mainBtn">
                         <button className="overviewBtn">Add to wish list</button>
-                        <button className="buyBtn" onClick={props.addToCart}>Add to cart</button>
+                        <button className="buyBtn" onClick={() => props.addToCart(book.id, book.title)}>Add to cart</button>
                     </div>
                 </section>
         </section>
