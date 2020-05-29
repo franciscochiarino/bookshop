@@ -51,7 +51,7 @@ function UserProfile(props) {
                             <button><img src={shippingIcon} alt="shipping icon" title="Shipping"/></button>
                         </div>
                         <div className="userInfo">
-                            <Cart user={props.user} books={props.books} />
+                            <Cart user={props.user} books={props.books} removeFromCart={props.removeFromCart} />
                         </div>
                     </section>
 

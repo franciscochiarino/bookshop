@@ -15,7 +15,7 @@ export default function CartItem(props) {
                 <p>Quantity: {props.quantity}</p>
                 <p className="cardPrice">${book.price}</p>
                 <button className="overviewBtn">Move to wishlist</button>
-                <button className="overviewBtn">Remove from cart</button>
+                <button className="overviewBtn" onClick={() => props.removeFromCart(props.orderId)} >Remove from cart</button>
             </section>
         </div>
     )

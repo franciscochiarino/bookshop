@@ -59,6 +59,10 @@ function App(props) {
             alert(`A copy of ${bookTitle} has been added to your cart.`) 
         } 
     }
+
+    const removeFromCart = orderId => {
+        console.log('[removeFromCart orderId: ', orderId);
+    }
     
     return (
         <div className="App">
@@ -77,7 +81,7 @@ function App(props) {
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/biography'>BIOGRAPHY</NavLink>
                             </div>
                             <div>
-                                {props.user ? 
+                                {props.user.email ? 
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }
@@ -102,7 +106,7 @@ function App(props) {
                         render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } 
                     />
                     
-                    <Route exact path='/users/user' component={UserProfile} />
+                    <Route exact path='/users/user' render={ (props) => <UserProfile {...props} removeFromCart={removeFromCart} /> } />
 
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>

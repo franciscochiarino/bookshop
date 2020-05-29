@@ -10,10 +10,12 @@ export default function Cart(props) {
         return (
             <CartItem
                 key={i}
+                orderId={order._id}
                 quantity={order.quantity}
                 bookId={order.book}
                 date={order.date}
                 books={props.books}
+                removeFromCart={props.removeFromCart}
             />
         )
     })
