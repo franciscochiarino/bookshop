@@ -37,7 +37,7 @@ export default function Cart(props) {
             <section className="cartItemsContainer">
                 {cartItems}
             </section>
-            <p className="totalPrice">Total amount ${totalPrice}</p>
+            <p className="totalPrice">Total amount ${totalPrice.toFixed(2)}</p>
             <div className="confirmBtn">
                 <button className="checkout btn">Confirm Purchase</button>
             </div>
