@@ -4,7 +4,7 @@ export default function CartItem(props) {
 
     const book = props.books.find(book => book._id === props.bookId);
 
-    if (!book) {return <h2>Loading...</h2> }
+    // if (!book) {return <h2>Loading...</h2> }
     
     return (
         <div className="cartItemCard">
