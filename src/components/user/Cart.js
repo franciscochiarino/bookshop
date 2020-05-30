@@ -9,13 +9,13 @@ export default function Cart(props) {
     const cartItems = props.user.orders.map((order, i) => {
         return (
             <CartItem
+                books={props.books}
                 key={i}
                 orderId={order._id}
                 userId={props.user.id}
                 quantity={order.quantity}
                 bookId={order.book}
                 date={order.date}
-                books={props.books}
                 removeFromCart={props.removeFromCart}
             />
         )

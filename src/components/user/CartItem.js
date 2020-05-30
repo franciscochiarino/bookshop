@@ -8,7 +8,7 @@ export default function CartItem(props) {
     
     return (
         <div className="cartItemCard">
-            <img src={`http://localhost:3001/books/cover/${book.cover}`} height="180" alt=""/>
+            <img src={`http://localhost:3001/books/cover/${book.cover}`} height="180" alt={`${book.title} by ${book.author} book cover`}/>
             <section className="cartItemCardText">
                 <p>{book.title}</p>
                 <p>by {book.author}</p>
