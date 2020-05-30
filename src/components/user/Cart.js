@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CartItem from './CartItem';
 
 export default function Cart(props) {
@@ -6,8 +6,17 @@ export default function Cart(props) {
     // Wait for user.orders
     if (!props.user.orders) { return <h3>Loading...</h3> }
 
+    let totalPrice = 0;
+
     const cartItems = props.user.orders.map((order, i) => {
-        console.log('[order in Cart:]', order)
+
+        // Get price of each book
+        const {price} = props.books.find(({_id}) => order.book === _id);
+        // Multiply it by order's quantity
+        const orderPrice = price * order.quantity;
+        // Add it to totalPrice
+        totalPrice += orderPrice;
+
         return (
             <CartItem
                 books={props.books}
@@ -28,6 +37,7 @@ export default function Cart(props) {
             <section className="cartItemsContainer">
                 {cartItems}
             </section>
+            <p className="totalPrice">Total amount ${totalPrice}</p>
             <div className="confirmBtn">
                 <button className="checkout btn">Confirm Purchase</button>
             </div>

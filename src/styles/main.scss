@@ -359,7 +359,7 @@ nav {
     border: 1px solid #adadad;
     border-radius: 10px;
 
-    .cartItemCard {
+    .CartItem {
         display: flex;
         justify-content: center;
         margin: 2rem 0;
@@ -371,6 +371,12 @@ nav {
         justify-content: space-evenly;
         padding-left: 0.8rem;
     }
+}
+
+.totalPrice {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem 0;
 }
 
 .confirmBtn {
