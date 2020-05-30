@@ -7,14 +7,15 @@ export default function Cart(props) {
     if (!props.user.orders) { return <h3>Loading...</h3> }
 
     const cartItems = props.user.orders.map((order, i) => {
+        console.log('[order in Cart:]', order)
         return (
             <CartItem
                 books={props.books}
+                bookId={order.book}
                 key={i}
                 orderId={order._id}
                 userId={props.user.id}
                 quantity={order.quantity}
-                bookId={order.book}
                 date={order.date}
                 removeFromCart={props.removeFromCart}
             />

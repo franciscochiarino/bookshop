@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function CartItem(props) {
 
-    const book = props.books.find(book => book._id === props.bookId);
+    if (!props.bookId) {return <h2>Loading...</h2> }
 
-    // if (!book) {return <h2>Loading...</h2> }
-    
+    const book = props.books.find(book => book._id === props.bookId);    
+
     return (
         <div className="cartItemCard">
             <img src={`http://localhost:3001/books/cover/${book.cover}`} height="180" alt={`${book.title} by ${book.author} book cover`}/>
