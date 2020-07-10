@@ -2,7 +2,9 @@
 const express = require('express');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const {setCORS} = require('./middlewares/security');
+dotenv.config();
 
 // Routes
 const indexRoute = require('./routes/indexRoute');

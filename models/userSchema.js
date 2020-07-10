@@ -51,7 +51,7 @@ UserSchema.methods.getPublicFields = function() {
 }
 
 UserSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id}, 'secretkey');
+    const token = jwt.sign({_id: this._id}, process.env.JWT_KEY);
     this.tokens.push({token});
     return token;
 }
