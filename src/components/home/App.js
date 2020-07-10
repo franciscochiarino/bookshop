@@ -83,7 +83,7 @@ function App(props) {
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/biography'>BIOGRAPHY</NavLink>
                             </div>
                             <div>
-                                {props.user.email ? 
+                                {props.user && props.user.email ? 
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }

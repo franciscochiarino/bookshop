@@ -23,10 +23,9 @@ export function login(email, password) {
                 // Save user id to sessionStorage
                 const userId = JSON.stringify(data.user.id);
                 sessionStorage.setItem('user', userId);
-
-                // Close login window
             })
             .catch(err => {
+                console.log(err)
                 dispatch({ type: 'LOGIN_REJECTED', payload: err })
             })
             
