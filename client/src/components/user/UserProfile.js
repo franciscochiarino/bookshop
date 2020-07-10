@@ -8,7 +8,7 @@ import logoutIcon from '../../assets/logout-icon.png';
 import shippingIcon from '../../assets/shipped.png';
 import cartIcon from '../../assets/shopping-cart.png';
 import wishListIcon from '../../assets/wish-list.png';
-import Cart from '../user/Cart';
+import Cart from './Cart';
 // Actions
 import { getBooks } from '../../actions/booksActions';
 

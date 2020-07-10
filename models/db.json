@@ -1,0 +1,15 @@
+{
+  "books": [
+    {
+      "id": 0,
+      "title": "Animal Farm",
+      "author": "George Orwell",
+      "genre": "Political Satire",
+      "year": 1945,
+      "pages": 112,
+      "description": "Animal Farm is an allegorical novella by George Orwell, first published in England on 17 August 1945. The book tells the story of a group of farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy. Ultimately, however, the rebellion is betrayed, and the farm ends up in a state as bad as it was before, under the dictatorship of a pig named Napoleon. "
+    }
+  ],
+  "orders": [],
+  "users": []
+}

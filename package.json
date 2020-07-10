@@ -1,0 +1,27 @@
+{
+  "name": "book-review",
+  "version": "1.0.0",
+  "description": "Upload your book review",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francisco Chiarino",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.1",
+    "gridfs-stream": "^1.1.1",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "lowdb": "^1.0.0",
+    "mongoose": "^5.9.10",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
