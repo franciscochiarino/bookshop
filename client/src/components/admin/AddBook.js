@@ -21,7 +21,7 @@ function AddBook(props) {
         formData.append('file', file);
 
         // Upload file
-        const responseFromCover = await fetch('http://localhost:3001/books/cover', {method: 'POST', body: formData });
+        const responseFromCover = await fetch('/books/cover', {method: 'POST', body: formData });
         const dataFromCover = await responseFromCover.json();
 
         // Create book object
@@ -49,7 +49,7 @@ function AddBook(props) {
         }
 
         // Post book
-        const response = await fetch('http://localhost:3001/books', options)
+        const response = await fetch('/books', options)
         const data = await response.json();
         console.log('Response from AddBook:', data);
 

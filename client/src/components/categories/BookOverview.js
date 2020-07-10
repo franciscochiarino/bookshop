@@ -9,7 +9,7 @@ export default function BookOverview(props) {
     }, [])
     
     const getBook = (id) => {
-        fetch(`http://localhost:3001/books/${id}`)
+        fetch(`/books/${id}`)
             .then(res => res.json())
             .then(data => {
                 setBook(data.book);
@@ -22,7 +22,7 @@ export default function BookOverview(props) {
     return (
         <section className="BookOverview">
                 <div>
-                <img src={`http://localhost:3001/books/cover/${book.cover}`} alt={`${book.title} book cover`}/>
+                <img src={`/books/cover/${book.cover}`} alt={`${book.title} book cover`}/>
                 </div>
                 <section className="overviewText">
                     <h2>{book.title}</h2>

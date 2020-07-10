@@ -3,7 +3,7 @@ export function getOrders() {
 
         dispatch({ type: 'GET_ORDERS '});
 
-        fetch('http://localhost:3001/orders')
+        fetch('/orders')
             .then(res => res.json())
             .then(data => {
                 dispatch({
@@ -33,7 +33,7 @@ export function postOrderAndPutUser(bookId, userId) {
         };
 
         // Post order
-        fetch('http://localhost:3001/orders', post)
+        fetch('/orders', post)
 
             .then(postOrderRes => postOrderRes.json())
             .then(postOrderData => {
@@ -47,7 +47,7 @@ export function postOrderAndPutUser(bookId, userId) {
                 return put
             })
             // Start put request
-            .then(put => fetch(`http://localhost:3001/users/${userId}`, put))
+            .then(put => fetch(`/users/${userId}`, put))
             .then(putUserRes => putUserRes.json())
             .then(putUserData => {
                 dispatch({ type: 'POST_ORDER_AND_PUT_USER_FULFILLED' })
@@ -75,7 +75,7 @@ export function updateOrderQuantity(orderId, orderQuantity) {
         }
 
         // Update
-        fetch(`http://localhost:3001/orders/${orderId}`, put)
+        fetch(`/orders/${orderId}`, put)
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'UPDATE_ORDER_QUANTITY_FULFILLED' })
@@ -103,13 +103,13 @@ export function deleteOrderAndPutUser(orderId, userId) {
         }
 
         // Delete order
-        fetch(`http://localhost:3001/orders/${orderId}`, deleteOptions)
+        fetch(`/orders/${orderId}`, deleteOptions)
             .then(deleteRes => deleteRes.json())
             .then(deleteData => {
                 console.log('[order deleted]', deleteData.order);
             })
             // Put user
-            .then(() => fetch(`http://localhost:3001/users/${userId}`, putOptions))
+            .then(() => fetch(`/users/${userId}`, putOptions))
             .then(putRes => putRes.json())
             .then(putData => {
                 console.log('[user put]', putData);

@@ -15,7 +15,7 @@ export function login(email, password) {
         };
 
         // Post request
-        fetch('http://localhost:3001/users/login', options)
+        fetch('/users/login', options)
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'LOGIN_FULFILLED', payload: data.user })
@@ -36,7 +36,7 @@ export function getUser(id) {
     return function(dispatch) {
         dispatch({ type: 'GET_USER'})
 
-        fetch(`http://localhost:3001/users/${id}`)
+        fetch(`/users/${id}`)
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'GET_USER_FULFILLED', payload: data.user })
@@ -64,7 +64,7 @@ export function postUser(firstName, lastName, email, password) {
         };
 
         // Post request
-        fetch('http://localhost:3001/users', options)
+        fetch('/users', options)
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'POST_USER_FULFILLED', payload: data.user})

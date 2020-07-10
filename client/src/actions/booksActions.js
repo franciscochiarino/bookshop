@@ -3,7 +3,7 @@ export function getBooks() {
 
         dispatch({ type: 'GET_BOOKS'})
 
-        fetch('http://localhost:3001/books')
+        fetch('/books')
             .then(response => response.json())
             .then(data => {
                 dispatch({ type: 'GET_BOOKS_FULFILLED', payload: data.books})
