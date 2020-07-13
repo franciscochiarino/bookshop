@@ -15,6 +15,7 @@ import SignUpForm from './SignUpForm';
 import Login from './Login';
 import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
+import UserSettings from '../user/UserSettings';
 
 function App(props) {
 
@@ -99,17 +100,10 @@ function App(props) {
                 {/* Routes */}
                 <Switch>
                     <Route exact path='/' component={Home} />
-
-                    <Route exact path='/books/:genre' 
-                        render={ (props) => <Books {...props} addToCart={addToCart} /> } 
-                    />
-
-                    <Route exact path='/books/book/:id' 
-                        render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } 
-                    />
-                    
+                    <Route exact path='/books/:genre' render={ (props) => <Books {...props} addToCart={addToCart} /> } />
+                    <Route exact path='/books/book/:id' render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } />     
                     <Route exact path='/users/user' render={ (props) => <UserProfile {...props} removeFromCart={removeFromCart} /> } />
-
+                    <Route exact path='/users/user/settings' component={UserSettings} />
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
 
