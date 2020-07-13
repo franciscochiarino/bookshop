@@ -7,7 +7,7 @@ Router.get('/', authToken, authAdmin, getUsers);
 Router.get('/:id', getUser);
 Router.post('/', validateUser(), postUser);
 Router.post('/login', login)
-Router.put('/:id', putUser);
-Router.delete('/:id', deleteUser);
+Router.put('/:id', authToken, putUser);
+Router.delete('/:id', authToken, deleteUser);
 
 module.exports = Router;

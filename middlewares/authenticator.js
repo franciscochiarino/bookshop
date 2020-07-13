@@ -4,6 +4,7 @@ const User = require('../models/userSchema');
 
 exports.authToken = (req, res, next) => {
     const token = req.header('x-auth');
+    if (!token) throw createError(403)
     
     jwt.verify(token, process.env.JWT_KEY, async (err, {_id}) => {
         try {
