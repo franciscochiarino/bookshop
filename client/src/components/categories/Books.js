@@ -53,7 +53,7 @@ function Books(props) {
 
     return (
         <div>
-            <section className="booksContainer">
+            <section className="Books">
                 {bookCards}
             </section>       
         </div>

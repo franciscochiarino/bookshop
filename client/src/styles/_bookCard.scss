@@ -1,0 +1,35 @@
+.BookCard {
+  display: flex;
+  padding: 1.5rem;
+  margin: 0 auto;
+  // animation: easeOpacity 300ms ease;
+
+
+  img {
+      width: 180px;
+  }
+
+  .cardDescription {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      width: 250px;
+      padding-left: 1rem;
+
+      q {
+          font-size: 1.1rem;
+          font-style: italic;
+          padding-top: 0.8rem;
+      }
+
+      .cardPrice {
+          position: absolute;
+          bottom: 3rem;
+      }
+      
+      .cardBtn {
+          position: absolute;
+          bottom: 5px;
+      }
+  }
+}

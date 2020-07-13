@@ -1,0 +1,13 @@
+.darkBg,
+.UserProfile,
+.Home,
+.BookCard,
+.BookOverview {
+    animation: easeOpacity 250ms ease;
+}
+
+
+@keyframes easeOpacity {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

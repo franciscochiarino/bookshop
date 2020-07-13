@@ -1,0 +1,42 @@
+.BookOverview {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 2rem;
+
+  img {
+      width: 400px;
+      height: auto;
+      padding-right: 1.5rem;
+      padding-bottom: 2rem;
+  }
+
+  .overviewText {
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+
+      .author {
+          font-size: 1.2rem;
+          font-style: italic;
+      }
+
+      .reviewCount {
+          font-size: 1.1rem;
+      }
+
+      .text {
+          padding-top: 1rem;
+          font-size: 1.2rem;
+          line-height: 1.4;
+      }
+
+      .price {
+          padding: 1rem 0;
+      }
+
+      .mainBtn {
+          align-self: f
+      }
+  }
+}

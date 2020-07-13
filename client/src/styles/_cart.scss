@@ -1,0 +1,43 @@
+.sectionHeading {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.cartItemsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #adadad;
+  border-radius: 10px;
+
+  .CartItem {
+      display: flex;
+      justify-content: center;
+      margin: 1rem;
+  }
+
+  .cartItemCardText {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding-left: 0.8rem;
+  }
+
+  .btnContainer {
+      display: flex;
+      flex-direction: column;
+  }
+}
+
+.totalPrice {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+}
+
+.confirmBtn {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}

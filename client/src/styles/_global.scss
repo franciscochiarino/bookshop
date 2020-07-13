@@ -1,0 +1,49 @@
+// Reset //
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Typography //
+
+html {
+  font-family: 'Fanwood Text', serif;
+  font-size: 100%;
+}
+
+h1 {
+  background-color: #000000;
+  color: #ffffff;
+  margin: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
+
+  &:link {
+      color: #000;
+  }
+  &:visited {
+      color: #000;
+  }
+  &:active {
+      color: #323232;
+  }
+}

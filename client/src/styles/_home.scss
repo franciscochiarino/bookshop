@@ -1,0 +1,40 @@
+.heroContainer {
+  max-width: 1280px;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+
+  img {
+      width: 55%;
+      max-width: 550px;
+  }
+
+  .heroTextbox {
+      width: 40%;
+      max-width: 400px;
+      padding: 1rem 0 0 2rem;
+
+      q {
+          font-size: 1.6rem;
+          line-height: 1.5;
+      }
+
+      p {
+          padding-top: 1rem;
+      }
+  }
+}
+
+.technologies {
+  text-align: center;
+
+  a {
+      text-decoration: underline;
+  }
+
+  .techIconsContainer > img {
+      padding: 0.5rem;
+      margin: 0.5rem;
+  }
+}
