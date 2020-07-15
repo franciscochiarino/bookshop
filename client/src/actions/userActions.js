@@ -78,3 +78,28 @@ export function postUser(firstName, lastName, email, password) {
             })  
     }
 }
+
+export function putUser( id, firstName, lastName, email) {
+    return function(dispatch) {
+        dispatch({ type: 'PUT_USER' })
+
+        // Put options
+        let put = {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ firstName, lastName, email })
+        }
+
+        // Send request
+        fetch(`/users/${id}`, put)
+            .then(res => res.json())
+            .then(data => {
+                dispatch({ type: 'PUT_USER_FULFILLED', payload: data.user })
+                console.log('res from put user:', data)
+            })
+            .catch(err => {
+                dispatch({ type: 'PUT_USER_REJECTED', payload: err });
+            })
+    }
+}

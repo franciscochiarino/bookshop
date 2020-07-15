@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react';
 import CartItem from './CartItem';
 
 export default function Cart(props) {

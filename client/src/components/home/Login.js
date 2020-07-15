@@ -24,7 +24,7 @@ function Login(props) {
             <form onSubmit={userLogin}>
                 
                 <label htmlFor="email"></label>
-                <input type="text" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                <input type="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                 
                 <label htmlFor="password"></label>
                 <input type="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>

@@ -12,21 +12,21 @@ import Cart from './Cart';
 // Actions
 import { getBooks } from '../../actions/booksActions';
 
-function UserProfile(props) {
+function UserProfile({ user, books, removeFromCart, dispatch }) {
 
     useEffect(() => {
-        if (props.books.length === 0) {
-            props.dispatch(getBooks());
+        if (books.length === 0) {
+            dispatch(getBooks());
         }
     }, [])
 
     const logout = () => {
         sessionStorage.removeItem('user');
-        props.dispatch({ type: 'LOGOUT'});
+        dispatch({ type: 'LOGOUT'});
     }
 
     // Wait for books if fetching is needed
-    if (props.books.length === 0) {return null } 
+    if (books.length === 0) { return null } 
 
         return (
             <div className="UserProfile">
@@ -34,9 +34,9 @@ function UserProfile(props) {
 
                     <img src={cover} alt="book store" className="cover" />
                     <div className="usernameContainer">
-                        <h2>{props.user.firstName}</h2>
+                        <h2>{user.firstName}</h2>
                         <div className="settingsLogoutContainer">
-                            {props.user.role === 'Admin' ? 
+                            {user.role === 'Admin' ? 
                                 <Link to="user/settings/admin"><img src={settingsIcon} alt="settings icon" title="Settings" /></Link> :
                                 <Link to="user/settings"><img src={settingsIcon} alt="settings icon" title="Settings"/></Link>
                             }
@@ -51,7 +51,7 @@ function UserProfile(props) {
                             <button><img src={shippingIcon} alt="shipping icon" title="Shipping"/></button>
                         </div>
                         <div className="userInfo">
-                            <Cart user={props.user} books={props.books} removeFromCart={props.removeFromCart} />
+                            <Cart user={user} books={books} removeFromCart={removeFromCart} />
                         </div>
                     </section>
 

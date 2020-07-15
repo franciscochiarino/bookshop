@@ -17,7 +17,7 @@ import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
 import UserSettings from '../user/UserSettings';
 
-function App(props) {
+function App({ user, orders, dispatch }) {
 
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
@@ -27,9 +27,9 @@ function App(props) {
         const data = sessionStorage.getItem('user');
         if (data) {
             const id = JSON.parse(data);
-            props.dispatch(getUser(id));
+            dispatch(getUser(id));
         }
-    }, [props.orders.shouldUserUpdate])
+    }, [orders.shouldUserUpdate])
 
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');
@@ -42,28 +42,28 @@ function App(props) {
     const addToCart = (bookId, bookTitle) => {
 
         // Check if user is logged in
-        if (!props.user.id) {
+        if (!user.id) {
             return alert('Please log in to purchase an item');
         }
 
         // Check if user already has the book in the cart
-        const order = props.user.orders.find(order => order.book === bookId);
+        const order = user.orders.find(order => order.book === bookId);
 
         if (order) {
             // Update order quantity
-            props.dispatch(updateOrderQuantity(order._id, order.quantity))
+            dispatch(updateOrderQuantity(order._id, order.quantity))
             alert(`A copy of ${bookTitle} has been added to your order.`)
 
         } else {
             // Create new order
-            props.dispatch(postOrderAndPutUser(bookId, props.user.id))
+            dispatch(postOrderAndPutUser(bookId, user.id))
             alert(`A copy of ${bookTitle} has been added to your cart.`) 
         } 
     }
 
     const removeFromCart = (orderId, userId) => {
         if (window.confirm('Are you sure you want to delete this order?')) {
-            props.dispatch(deleteOrderAndPutUser(orderId, userId));
+            dispatch(deleteOrderAndPutUser(orderId, userId));
         }
     }
     
@@ -84,7 +84,7 @@ function App(props) {
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/biography'>BIOGRAPHY</NavLink>
                             </div>
                             <div>
-                                {props.user && props.user.email ? 
+                                {user && user.email ? 
                                     <button className="userLink"><Link to='/users/user'>ACCOUNT</Link></button> : 
                                     <button className="userLink" onClick={() => setLogin(true)}>LOG IN</button>
                                 }
@@ -103,7 +103,7 @@ function App(props) {
                     <Route exact path='/books/:genre' render={ (props) => <Books {...props} addToCart={addToCart} /> } />
                     <Route exact path='/books/book/:id' render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } />     
                     <Route exact path='/users/user' render={ (props) => <UserProfile {...props} removeFromCart={removeFromCart} /> } />
-                    <Route exact path='/users/user/settings' component={UserSettings} />
+                    <Route exact path='/users/user/settings' render={ (props) => <UserSettings {...props} user={user} dispatch={dispatch} /> } />
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
 

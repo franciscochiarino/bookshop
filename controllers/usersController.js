@@ -41,7 +41,8 @@ exports.putUser = async (req, res, next) => {
     try {
         const updateUser = await User.findByIdAndUpdate(id, user, {new: true});
         if (!updateUser) throw createError(404);
-        res.json({ success: true, user: updateUser });
+        const userData = updateUser.getPublicFields();
+        res.json({ success: true, user: userData });
     }
     catch(err) {
         next(err);

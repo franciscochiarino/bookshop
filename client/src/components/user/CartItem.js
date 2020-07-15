@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function CartItem(props) {
 
-    
     const book = props.books.find(book => book._id === props.bookId);    
-    if (!book) {return null }
+    if (!props.books) { return null }
+    if (!book) { return null }
 
     return (
         <div className="CartItem">
