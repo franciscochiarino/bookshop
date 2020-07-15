@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { useAlert } from 'react-alert';
 import { useState } from 'react';
 import { postUser } from '../../actions/userActions';
 import { connect } from 'react-redux';
@@ -9,6 +10,7 @@ function SignUpForm(props) {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const alert = useAlert();
 
     const addUser = async e => {
         e.preventDefault();
@@ -16,7 +18,7 @@ function SignUpForm(props) {
         // Check if user is logded in
         const data = sessionStorage.getItem('user');
         if (data) {
-            return alert('You are already logded in');
+            return alert.info('You are already logded in');
         }
 
         props.dispatch(postUser(firstName, lastName, email, password));

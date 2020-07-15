@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import { useAlert } from 'react-alert';
+import React from 'react';
 import hero from '../../assets/hero_1920x1280.jpg';
 import reactLogo from '../../assets/technologies/react-logo.png';
 import reduxLogo from '../../assets/technologies/redux-logo.png';
@@ -9,12 +8,6 @@ import expressLogo from '../../assets/technologies/express-logo.png';
 import mongoLogo from '../../assets/technologies/mongo-logo.jpeg';
 
 export default function Home() {
-    const alert = useAlert();
-    useEffect(() => {
-        alert.success('This is a success alert')
-        alert.error('This is a error alert')
-        alert.info('This is a info alert')
-    }, [])
 
     return (
         <section className="Home">

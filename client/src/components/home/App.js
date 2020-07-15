@@ -1,6 +1,6 @@
-
 // Modules
 import React from 'react';
+import { useAlert } from 'react-alert';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -21,6 +21,7 @@ function App({ user, orders, dispatch }) {
 
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
+    const alert = useAlert();
 
     useEffect(() => {
         console.log('[App useEffect]')
@@ -34,7 +35,7 @@ function App({ user, orders, dispatch }) {
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');
         if (data) {
-            return alert('You are already logged in');
+            return alert.info('You are already logged in');
         }
         setSignUp(true)
     }
@@ -43,7 +44,7 @@ function App({ user, orders, dispatch }) {
 
         // Check if user is logged in
         if (!user.id) {
-            return alert('Please log in to purchase an item');
+            return alert.info('Please log in to purchase an item');
         }
 
         // Check if user already has the book in the cart
@@ -52,12 +53,12 @@ function App({ user, orders, dispatch }) {
         if (order) {
             // Update order quantity
             dispatch(updateOrderQuantity(order._id, order.quantity))
-            alert(`A copy of ${bookTitle} has been added to your order.`)
+            alert.success(`A copy of ${bookTitle} has been added to your order.`)
 
         } else {
             // Create new order
             dispatch(postOrderAndPutUser(bookId, user.id))
-            alert(`A copy of ${bookTitle} has been added to your cart.`) 
+            alert.success(`A copy of ${bookTitle} has been added to your cart.`) 
         } 
     }
 
