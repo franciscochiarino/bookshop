@@ -5,9 +5,9 @@ export default function Cart(props) {
 
     // Wait for user.orders
     if (!props.user.orders) { return <h3>Loading...</h3> }
-
+    
     let totalPrice = 0;
-
+    
     const cartItems = props.user.orders.map((order, i) => {
 
         // Get price of each book
