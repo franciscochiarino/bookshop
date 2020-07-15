@@ -42,6 +42,7 @@ export function postOrderAndPutUser(bookId, userId) {
                 let put = {
                     method: 'PUT',
                     headers: {'content-type': 'application/json'},
+                    credentials: 'include',
                     body: JSON.stringify({ $push: {orders: postOrderData.order._id}})
                 };
                 return put

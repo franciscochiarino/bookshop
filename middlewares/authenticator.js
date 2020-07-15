@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const createError = require('http-errors');
 const User = require('../models/userSchema');
 
-exports.authToken = (req, res, next) => {
-    const token = req.header('x-auth');
+exports.authToken = async (req, res, next) => {
+    const token = req.cookies['x-auth'];
     if (!token) throw createError(403)
     
     jwt.verify(token, process.env.JWT_KEY, async (err, {_id}) => {
@@ -19,7 +19,7 @@ exports.authToken = (req, res, next) => {
     })
 }
 
-exports.authAdmin = (req, res, next) => {
+exports.authAdmin = async (req, res, next) => {
     const {role} = req.user;
     if (role !== 'Admin') next(createError(403));
     next();

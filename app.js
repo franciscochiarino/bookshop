@@ -3,6 +3,7 @@ const express = require('express');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const {setCORS} = require('./middlewares/security');
 dotenv.config();
 
@@ -28,6 +29,7 @@ mongoose.connection.on('open', () => console.log('databse is connected'));
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(setCORS);
 app.use('/', indexRoute);
 app.use('/books', booksRoute);

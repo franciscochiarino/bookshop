@@ -78,7 +78,7 @@ exports.login = async (req, res, next) => {
         // Get Public Fields
         const userData = user.getPublicFields();
 
-        res.header('x-auth', token);
+        res.cookie('x-auth', token);
         res.json({success: true, message: 'You are logged in!', user: userData});
     }
     catch (err) {
