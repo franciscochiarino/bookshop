@@ -1,0 +1,7 @@
+.editProfile {
+  margin-top: 2rem;
+
+  &Form {
+    @extend .addBookForm;
+  }
+}
