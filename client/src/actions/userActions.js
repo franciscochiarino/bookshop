@@ -95,8 +95,9 @@ export function putUser( id, firstName, lastName, email) {
         fetch(`/users/${id}`, put)
             .then(res => res.json())
             .then(data => {
-                dispatch({ type: 'PUT_USER_FULFILLED', payload: data.user })
-                console.log('res from put user:', data)
+                dispatch({ type: 'PUT_USER_FULFILLED', payload: data.user });
+                console.log('res from put user:', data);
+                window.location = '/users/user';
             })
             .catch(err => {
                 dispatch({ type: 'PUT_USER_REJECTED', payload: err });

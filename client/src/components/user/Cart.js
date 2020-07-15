@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartItem from './CartItem';
 
 export default function Cart(props) {
@@ -11,7 +11,7 @@ export default function Cart(props) {
     const cartItems = props.user.orders.map((order, i) => {
 
         // Get price of each book
-        const {price} = props.books.find(({_id}) => order.book === _id);
+        const { price } = props.books.find(({_id}) => order.book === _id);
         // Multiply it by order's quantity
         const orderPrice = price * order.quantity;
         // Add it to totalPrice
