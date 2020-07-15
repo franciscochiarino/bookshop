@@ -63,9 +63,8 @@ function App({ user, orders, dispatch }) {
     }
 
     const removeFromCart = (orderId, userId) => {
-        if (window.confirm('Are you sure you want to delete this order?')) {
-            dispatch(deleteOrderAndPutUser(orderId, userId));
-        }
+        dispatch(deleteOrderAndPutUser(orderId, userId));
+        alert.success(`Order removed.`)
     }
     
     return (
@@ -77,7 +76,7 @@ function App({ user, orders, dispatch }) {
                         <nav>
                             {/* Nav Links */}
                             <div>
-                                <NavLink className="navLink" activeClassName="navActive" to='/'>HOME</NavLink>
+                                <NavLink className="navLink" activeClassName="navActive" to='/' exact={true} >HOME</NavLink>
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/favorites'>FAVORITES</NavLink>
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/fiction'>FICTION</NavLink>
                                 <NavLink className="navLink" activeClassName="navActive" to='/books/mystery'>MYSTERY</NavLink>

@@ -9,7 +9,7 @@ import './styles/main.scss'
 
 const options = {
   position: positions.BOTTOM_LEFT,
-  timeout: 0,
+  timeout: 3000,
   offset: '10px',
   transition: transitions.SCALE,
 }
@@ -24,7 +24,7 @@ const alertStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  minWidth: '350px',
+  width: '350px',
   height: "auto",
   border: "1px solid #000",
   boxSizing: 'border-box',
