@@ -29,7 +29,7 @@ function UserProfile({ user, books, removeFromCart, dispatch }) {
     }
 
     // Wait for books if fetching is needed
-    if (books.length === 0) { return null } 
+    // if (books.length === 0) { return null } 
 
         return (
             <div className="UserProfile">
