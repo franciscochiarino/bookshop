@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 
-export default function Nav({ user, setLogin, openSignUp }) {
+function Nav({ user, setLogin, openSignUp, history }) {
   const [mobileNav, setMobileNav] = useState('mobileNavClose');
-
   const handleMobileNav = () => {
     mobileNav === 'mobileNavOpen' ? setMobileNav('mobileNavClose') : setMobileNav('mobileNavOpen');
   };
@@ -18,9 +17,14 @@ export default function Nav({ user, setLogin, openSignUp }) {
     openSignUp();
   }
 
+  const goToPreviousPage = () => {
+    history.goBack();
+  };
+
   return (
     <>
       <button id="menuBtn" onClick={handleMobileNav}>Menu</button>
+      <button id="backBtn" onClick={goToPreviousPage}>Back</button>
       <nav className={mobileNav}>
         <div className="navLinks">
             <button id="closeNavBtn" onClick={handleMobileNav}>close</button>
@@ -42,3 +46,5 @@ export default function Nav({ user, setLogin, openSignUp }) {
     </>
   )
 }
+
+export default withRouter(Nav);

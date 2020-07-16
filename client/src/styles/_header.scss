@@ -9,12 +9,19 @@
       margin-bottom: 1rem;
     }
 
-    #menuBtn {
+    #menuBtn,
+    #backBtn {
       background: #000;
       color: #fff;
       padding: 0.5rem 1rem;
       border: 1px solid #000;
       border-radius: 4px;
+    }
+
+    #backBtn {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
     }
   }
 }

@@ -40,3 +40,12 @@
       }
   }
 }
+
+@media screen and (max-width: 850px) {
+    .BookOverview {
+        img {
+            width: 100%;
+            padding-right: 0;
+        }
+    }
+}

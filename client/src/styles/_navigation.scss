@@ -20,7 +20,8 @@ nav {
   border-bottom: 3px solid #000;
 }
 
-#menuBtn {
+#menuBtn,
+#backBtn {
   display: none;
 }
 
@@ -30,7 +31,8 @@ nav {
     border-bottom: none;
   }
 
-  #menuBtn {
+  #menuBtn,
+  #backBtn {
     display: block;
   }
 
