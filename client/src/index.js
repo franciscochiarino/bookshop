@@ -8,7 +8,7 @@ import store from './store';
 import './styles/main.scss'
 
 const options = {
-  position: positions.BOTTOM_LEFT,
+  position: positions.BOTTOM_CENTER,
   timeout: 3000,
   offset: '10px',
   transition: transitions.SCALE,
@@ -33,7 +33,7 @@ const alertStyle = {
 
 const buttonStyle = {
   backgroundColor: '#000',
-  color: 'aaa',
+  color: '#eee',
   border: 'none',
   cursor: 'pointer',
 }
