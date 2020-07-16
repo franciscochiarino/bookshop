@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
-export default function Nav() {
+export default function Nav({ user, setLogin, openSignUp }) {
   return (
     <nav>
       <div>

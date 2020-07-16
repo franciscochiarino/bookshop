@@ -74,7 +74,7 @@ function App({ user, orders, dispatch }) {
 
                 <header>
                     <h1>BOOKSHOP</h1>
-                    <Nav />
+                    <Nav user={user} setLogin={setLogin} openSignUp={openSignUp} />
                 </header>
 
                 {/* Signup and Login*/}
