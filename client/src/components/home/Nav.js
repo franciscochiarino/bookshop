@@ -23,6 +23,7 @@ export default function Nav({ user, setLogin, openSignUp }) {
       <button id="menuBtn" onClick={handleMobileNav}>Menu</button>
       <nav className={mobileNav}>
         <div className="navLinks">
+            <button id="closeBtn" onClick={handleMobileNav}>close</button>
             <NavLink className="navLink" activeClassName="navActive" onClick={handleMobileNav} to='/' exact={true} >HOME</NavLink>
             <NavLink className="navLink" activeClassName="navActive" onClick={handleMobileNav} to='/books/favorites'>FAVORITES</NavLink>
             <NavLink className="navLink" activeClassName="navActive" onClick={handleMobileNav} to='/books/fiction'>FICTION</NavLink>
