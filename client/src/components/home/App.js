@@ -73,7 +73,7 @@ function App({ user, orders, dispatch }) {
             <BrowserRouter>
 
                 <header>
-                    <h1>BOOKSHOP</h1>
+                    <Link id="siteTitle" to="/"><h1>BOOKSHOP</h1></Link>
                     <Nav user={user} setLogin={setLogin} openSignUp={openSignUp} />
                 </header>
 
