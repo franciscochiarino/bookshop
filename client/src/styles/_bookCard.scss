@@ -33,3 +33,32 @@
       }
   }
 }
+
+@media screen and (max-width: 550px) {
+    .BookCard {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 2rem 0;
+        width: 100%;
+
+        .cardDescription {
+            padding: 1rem 0;
+
+            q {
+                padding-top: 1rem;
+            }
+
+            .cardPrice,
+            .cardBtn {
+                position: static;
+                padding: 0.5rem 0;
+            }
+
+            .cardBtn {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
