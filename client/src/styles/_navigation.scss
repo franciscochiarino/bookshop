@@ -71,5 +71,13 @@ nav {
     .navButtons {
       margin-bottom: 2rem;
     }
+
+    #closeNavBtn {
+      border: none;
+      background: none;
+      position: fixed;
+      top: 10px;
+      right: 15px;
+    }
   }
 }
