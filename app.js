@@ -4,14 +4,15 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-const {setCORS} = require('./middlewares/security');
-dotenv.config();
-
 // Routes
 const indexRoute = require('./routes/indexRoute');
 const booksRoute = require('./routes/booksRoute');
 const ordersRoute = require('./routes/ordersRoute');
 const usersRoute = require('./routes/usersRoute');
+// Other Imports
+const {setCORS} = require('./middlewares/security');
+dotenv.config();
+const config = require('./config/config');
 
 // Server
 const app = express();
@@ -23,7 +24,7 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => console.log('server is running'));
 
 // Database
-mongoose.connect('mongodb://127.0.0.1:27017/contextManager', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(config.db, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connection.on('error', (err) => console.log(err));
 mongoose.connection.on('open', () => console.log('databse is connected'));
 

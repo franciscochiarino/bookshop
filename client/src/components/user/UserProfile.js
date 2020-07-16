@@ -6,9 +6,9 @@ import { useCookies } from 'react-cookie';
 import cover from '../../assets/books-1097_231.png';
 import settingsIcon from '../../assets/settings-icon.png';
 import logoutIcon from '../../assets/logout-icon.png';
-import shippingIcon from '../../assets/shipped.png';
+// import shippingIcon from '../../assets/shipped.png';
 import cartIcon from '../../assets/shopping-cart.png';
-import wishListIcon from '../../assets/wish-list.png';
+// import wishListIcon from '../../assets/wish-list.png';
 import Cart from './Cart';
 // Actions
 import { getBooks } from '../../actions/booksActions';
@@ -50,8 +50,8 @@ function UserProfile({ user, books, removeFromCart, dispatch }) {
                     <section className="userDashboard">
                         <div className="icons">
                             <button><img src={cartIcon} alt="cart icon" title="Cart"/></button>
-                            <button><img src={wishListIcon} alt="wish list icon" title="Wish list"/></button>
-                            <button><img src={shippingIcon} alt="shipping icon" title="Shipping"/></button>
+                            {/* <button><img src={wishListIcon} alt="wish list icon" title="Wish list"/></button> */}
+                            {/* <button><img src={shippingIcon} alt="shipping icon" title="Shipping"/></button> */}
                         </div>
                         <div className="userInfo">
                             <Cart user={user} books={books} removeFromCart={removeFromCart} />

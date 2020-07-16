@@ -8,6 +8,7 @@
 
   .cover {
       width: 80%;
+      max-width: 1000px;
   }
 
   .usernameContainer {
@@ -17,6 +18,7 @@
       top: -3.5rem;
       background-color: #fff;
       width: 40%;
+      max-width: 550px;
       padding: 0.5rem;
 
       .settingsLogoutContainer {

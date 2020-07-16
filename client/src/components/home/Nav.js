@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import { NavLink, Link, withRouter } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 function Nav({ user, setLogin, openSignUp, history }) {
   const [mobileNav, setMobileNav] = useState('mobileNavClose');
+  const isSmallScreen = useMediaQuery({ maxWidth: 850 });
+
   const handleMobileNav = () => {
-    mobileNav === 'mobileNavOpen' ? setMobileNav('mobileNavClose') : setMobileNav('mobileNavOpen');
+    if (isSmallScreen) {
+      mobileNav === 'mobileNavOpen' ? setMobileNav('mobileNavClose') : setMobileNav('mobileNavOpen');
+    }
   };
 
   const handleMobileNavAndLogin = () => {
-    handleMobileNav();
+    if (isSmallScreen) {
+      handleMobileNav();
+    }
     setLogin(true);
   }
 
   const handleMobileNavAndSignUp = () => {
-    handleMobileNav();
+    if (isSmallScreen) {
+      handleMobileNav();
+    }
     openSignUp();
   }
 

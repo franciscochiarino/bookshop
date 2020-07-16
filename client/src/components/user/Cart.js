@@ -39,7 +39,7 @@ function Cart({ books, user, dispatch, removeFromCart }) {
         user.orders.map(({_id}) => {
             return dispatch(deleteOrderAndPutUser(_id, userId));
         })
-        alert.success('Thank you for your purchase');
+        alert.success('Thank you for your purchase!');
     }
 
     return (
