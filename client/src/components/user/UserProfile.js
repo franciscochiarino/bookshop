@@ -14,13 +14,13 @@ import Cart from './Cart';
 import { getBooks } from '../../actions/booksActions';
 
 function UserProfile({ user, books, removeFromCart, dispatch }) {
-    const [cookies, setCookies, removeCookie] = useCookies(['x-auth']);
+    const [ , , removeCookie] = useCookies(['x-auth']);
 
     useEffect(() => {
         if (books.length === 0) {
             dispatch(getBooks());
         }
-    }, [])
+    }, [books.length, dispatch])
 
     const logout = () => {
         sessionStorage.removeItem('user');

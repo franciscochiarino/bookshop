@@ -37,7 +37,7 @@ function Cart({ books, user, dispatch, removeFromCart }) {
 
     const confirmPurchase = async (userId) => {
         user.orders.map(({_id}) => {
-            dispatch(deleteOrderAndPutUser(_id, userId));
+            return dispatch(deleteOrderAndPutUser(_id, userId));
         })
         alert.success('Thank you for your purchase');
     }

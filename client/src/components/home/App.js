@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, NavLink, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Actions
 import { getUser } from '../../actions/userActions'
@@ -31,7 +31,7 @@ function App({ user, orders, dispatch }) {
             const id = JSON.parse(data);
             dispatch(getUser(id));
         }
-    }, [orders.shouldUserUpdate])
+    }, [orders.shouldUserUpdate, dispatch])
 
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');

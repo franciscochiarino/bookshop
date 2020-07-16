@@ -3,38 +3,38 @@ import BookCard from './BookCard';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/booksActions';
 
-function Books(props) {
+function Books({ books, dispatch, match, addToCart, overview}) {
 
     useEffect(() => {
         console.log('[Books useEffect]')
-        if (props.books.length === 0) {
-            props.dispatch(getBooks())
+        if (books.length === 0) {
+            dispatch(getBooks())
         }
-    }, [])
+    }, [books.length, dispatch])
 
-    let books = [];
+    let currentBooks = [];
 
-    switch(props.match.params.genre) {
+    switch(match.params.genre) {
         case 'favorites':
-            books = props.books.filter(({favorite}) => favorite === true);
+            currentBooks = books.filter(({favorite}) => favorite === true);
             break;
         case 'fiction':
-            books = props.books.filter(({genre}) => genre === 'Fiction');
+            currentBooks = books.filter(({genre}) => genre === 'Fiction');
             break;
         case 'mystery':
-            books = props.books.filter(({genre}) => genre === 'Mystery');
+            currentBooks = books.filter(({genre}) => genre === 'Mystery');
             break;
         case 'tech':
-            books = props.books.filter(({genre}) => genre === 'Tech');
+            currentBooks = books.filter(({genre}) => genre === 'Tech');
             break;
         case 'biography':
-            books = props.books.filter(({genre}) => genre === 'Biography');
+            currentBooks = books.filter(({genre}) => genre === 'Biography');
             break;
         default:
             return
     }
 
-    const bookCards = books.map((book, i) => {
+    const bookCards = currentBooks.map((book, i) => {
         return(
             <BookCard 
                 key={i}
@@ -45,8 +45,8 @@ function Books(props) {
                 published={book.published}
                 quote={book.quote}
                 price={book.price}
-                addToCart={props.addToCart}
-                overview={props.overview}
+                addToCart={addToCart}
+                overview={overview}
             />
         )
     })

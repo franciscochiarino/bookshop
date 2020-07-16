@@ -10,7 +10,7 @@ export default function UserSettings({ user, dispatch }) {
         setFirstName(user.firstName);
         setLastName(user.lastName);
         setEmail(user.email);
-    }, [])
+    }, [user.firstName, user.lastName, user.email])
 
     const editProfile = (e) => {
         e.preventDefault();

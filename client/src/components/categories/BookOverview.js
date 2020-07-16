@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-export default function BookOverview(props) {
+export default function BookOverview({ match, addToCart }) {
 
     const [book, setBook] = useState(null);
 
     useEffect(() => { 
-        getBook(props.match.params.id)
-    }, [])
+        getBook(match.params.id)
+    }, [match])
     
     const getBook = (id) => {
         fetch(`/books/${id}`)
@@ -32,7 +32,7 @@ export default function BookOverview(props) {
                     <p className="price">${book.price}</p>
                     <div className="mainBtn">
                         <button className="overviewBtn">Add to wish list</button>
-                        <button className="buyBtn" onClick={() => props.addToCart(book.id, book.title)}>Add to cart</button>
+                        <button className="buyBtn" onClick={() => addToCart(book.id, book.title)}>Add to cart</button>
                     </div>
                 </section>
         </section>

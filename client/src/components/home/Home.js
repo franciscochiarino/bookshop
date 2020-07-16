@@ -23,7 +23,7 @@ export default function Home() {
                 </section>
             </section>
             <section className="technologies">
-                <h4>Designed and developed by <a href="https://www.franciscochiarino.com" target="_blank">Francisco Chiarino</a> using:</h4>
+                <h4>Designed and developed by <a href="https://www.franciscochiarino.com" target="_blank" rel="noopener noreferrer">Francisco Chiarino</a> using:</h4>
                 <section className="techIconsContainer">
                     <img src={reactLogo} width="100" alt="react logo" title="React" />
                     <img src={reduxLogo} width="100" alt="redux logo" title="Redux" />
