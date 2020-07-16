@@ -21,7 +21,8 @@ nav {
 }
 
 #menuBtn,
-#backBtn {
+#backBtn,
+#closeNavBtn {
   display: none;
 }
 
@@ -32,7 +33,8 @@ nav {
   }
 
   #menuBtn,
-  #backBtn {
+  #backBtn,
+  #closeNavBtn {
     display: block;
   }
 

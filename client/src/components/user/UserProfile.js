@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useCookies } from 'react-cookie';
 // Assets
 import cover from '../../assets/books-1097_231.png';
 import settingsIcon from '../../assets/settings-icon.png';
@@ -13,6 +14,7 @@ import Cart from './Cart';
 import { getBooks } from '../../actions/booksActions';
 
 function UserProfile({ user, books, removeFromCart, dispatch }) {
+    const [cookies, setCookies, removeCookie] = useCookies(['x-auth']);
 
     useEffect(() => {
         if (books.length === 0) {
@@ -22,6 +24,7 @@ function UserProfile({ user, books, removeFromCart, dispatch }) {
 
     const logout = () => {
         sessionStorage.removeItem('user');
+        removeCookie('x-auth');
         dispatch({ type: 'LOGOUT'});
     }
 
