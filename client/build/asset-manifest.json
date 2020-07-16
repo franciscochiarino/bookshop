@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6bb2066a.chunk.css",
+    "main.js": "/static/js/main.fac672c0.chunk.js",
+    "main.js.map": "/static/js/main.fac672c0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f988630a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f988630a.js.map",
+    "static/js/2.95ba8fe2.chunk.js": "/static/js/2.95ba8fe2.chunk.js",
+    "static/js/2.95ba8fe2.chunk.js.map": "/static/js/2.95ba8fe2.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bb6b3a7072f19f417129da7bb828cec4.js": "/precache-manifest.bb6b3a7072f19f417129da7bb828cec4.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.6bb2066a.chunk.css.map": "/static/css/main.6bb2066a.chunk.css.map",
+    "static/js/2.95ba8fe2.chunk.js.LICENSE.txt": "/static/js/2.95ba8fe2.chunk.js.LICENSE.txt",
+    "static/media/books-1097_231.png": "/static/media/books-1097_231.21fd0168.png",
+    "static/media/hero_1920x1280.jpg": "/static/media/hero_1920x1280.6802ad51.jpg",
+    "static/media/node-logo.png": "/static/media/node-logo.3c121c21.png",
+    "static/media/react-logo.png": "/static/media/react-logo.705fec42.png",
+    "static/media/redux-logo.png": "/static/media/redux-logo.9fdd7a84.png",
+    "static/media/sass-logo.png": "/static/media/sass-logo.ac774bc1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f988630a.js",
+    "static/js/2.95ba8fe2.chunk.js",
+    "static/css/main.6bb2066a.chunk.css",
+    "static/js/main.fac672c0.chunk.js"
+  ]
+}

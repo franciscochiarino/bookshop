@@ -29,6 +29,7 @@ mongoose.connection.on('error', (err) => console.log(err));
 mongoose.connection.on('open', () => console.log('databse is connected'));
 
 // Middleware
+app.use(express.static("client/build"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(setCORS);
