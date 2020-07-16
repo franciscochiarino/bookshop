@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Actions
 import { getUser } from '../../actions/userActions'
@@ -70,7 +70,7 @@ function App({ user, orders, dispatch }) {
     
     return (
         <div className="App">
-            <BrowserRouter>
+            <HashRouter>
 
                 <header>
                     <Link id="siteTitle" to="/"><h1>BOOKSHOP</h1></Link>
@@ -91,7 +91,7 @@ function App({ user, orders, dispatch }) {
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>
 
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }
