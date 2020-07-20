@@ -1,13 +1,14 @@
 const util = require("util");
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
+const config = require('./config/config');
 
 
 // Define storage configuration
 const storage = new GridFsStorage({
 
     // MongoDB connection string
-    url: "mongodb://127.0.0.1:27017/contextManager",
+    url: config.db,
 
     // MongoDB options
     options: { useNewUrlParser: true, useUnifiedTopology: true },
