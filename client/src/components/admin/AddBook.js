@@ -56,7 +56,7 @@ function AddBook(props) {
             const data = await response.json();
             if (data.success) {
                 alert.success(`${data.book.title} has been added!`);
-                props.history.push('/users/user');
+                window.loaction = '/#/users/user';
             }
         }
         catch(err) {
