@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import { useAlert } from 'react-alert';
+import { Redirect } from 'react-router-dom';
 
 function AddBook(props) {
     const [title, setTitle] = useState('');
@@ -13,6 +14,7 @@ function AddBook(props) {
     const [price, setPrice] = useState(0);
     const [favorite, setFavorite] = useState(false);
     const [file, setFile] = useState({});
+    const [redirect, setRedirect] = useState(false);
     const alert = useAlert();
 
     const addBook = async e => {
@@ -56,7 +58,7 @@ function AddBook(props) {
             const data = await response.json();
             if (data.success) {
                 alert.success(`${data.book.title} has been added!`);
-                window.location = '/users/user';
+                setRedirect(true);
             }
         }
         catch(err) {
@@ -70,7 +72,8 @@ function AddBook(props) {
        
     }
 
-    
+    if (redirect) return <Redirect to="/users/user" />
+
     return (
         <section className="addBook">
             <h3 className="sectionHeading">Add Book</h3>

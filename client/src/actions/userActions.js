@@ -97,7 +97,7 @@ export function putUser( id, firstName, lastName, email) {
             .then(data => {
                 dispatch({ type: 'PUT_USER_FULFILLED', payload: data.user });
                 console.log('res from put user:', data);
-                window.location = '/users/user';
+                window.location = '/#/users/user';
             })
             .catch(err => {
                 dispatch({ type: 'PUT_USER_REJECTED', payload: err });
