@@ -54,7 +54,10 @@ function AddBook(props) {
         try {
             const response = await fetch('/books', options)
             const data = await response.json();
-            if (data.success) alert.success(`${data.book.title} has been added!`);
+            if (data.success) {
+                window.location = '/users/user';
+                alert.success(`${data.book.title} has been added!`);
+            }
         }
         catch(err) {
             alert.error('The server is not responding... Please try again later.');
