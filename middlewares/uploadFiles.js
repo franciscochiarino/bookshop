@@ -1,7 +1,7 @@
 const util = require("util");
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
-const config = require('./config/config');
+const config = require('../config/config');
 
 
 // Define storage configuration

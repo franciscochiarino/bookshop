@@ -2,7 +2,7 @@ const Book = require('../models/bookSchema');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
-const config = require('./config/config');
+const config = require('../config/config');
 
 // Import uploadFiles middleware
 const uploadFilesMiddleware = require('../middlewares/uploadFiles');
