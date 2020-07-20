@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import { useAlert } from 'react-alert';
 
 function AddBook(props) {
     const [title, setTitle] = useState('');
@@ -12,6 +13,7 @@ function AddBook(props) {
     const [price, setPrice] = useState(0);
     const [favorite, setFavorite] = useState(false);
     const [file, setFile] = useState({});
+    const alert = useAlert();
 
     const addBook = async e => {
         e.preventDefault();
@@ -49,9 +51,15 @@ function AddBook(props) {
         }
 
         // Post book
-        const response = await fetch('/books', options)
-        const data = await response.json();
-        console.log('Response from AddBook:', data);
+        try {
+            const response = await fetch('/books', options)
+            const data = await response.json();
+            if (data.success) alert.success(`${data.book.title} has been added!`);
+        }
+        catch(err) {
+            alert.error('The server is not responding... Please try again later.');
+            console.log(err);
+        }
 
         props.dispatch({
             type: 'UPDATE_BOOKS',
