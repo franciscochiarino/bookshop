@@ -2,6 +2,7 @@ const Book = require('../models/bookSchema');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
+const config = require('./config/config');
 
 // Import uploadFiles middleware
 const uploadFilesMiddleware = require('../middlewares/uploadFiles');
@@ -30,7 +31,7 @@ exports.getBook = async (req, res, next) => {
 
 exports.getBookCover = async (req, res, next) => {
     try {
-        const connection = mongoose.createConnection("mongodb://127.0.0.1:27017/contextManager");
+        const connection = mongoose.createConnection(config.db);
         connection.once('open', function () {
             const gfs = Grid(connection.db, mongoose.mongo);
             gfs.collection('covers');
