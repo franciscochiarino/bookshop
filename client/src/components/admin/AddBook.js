@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useAlert } from 'react-alert';
 
 function AddBook(props) {
@@ -56,7 +56,7 @@ function AddBook(props) {
             const data = await response.json();
             if (data.success) {
                 alert.success(`${data.book.title} has been added!`);
-                window.location = '/#/users/user';
+                props.history.push('/users/user');
             }
         }
         catch(err) {
@@ -116,7 +116,7 @@ function AddBook(props) {
                 
 
                 <button type="submit">Submit</button>
-                
+                <button onClick={() => props.history.push('/users/user')}>redirect</button>
             </form>
         </section>
     )
