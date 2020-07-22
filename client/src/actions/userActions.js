@@ -47,12 +47,12 @@ export function getUser(id) {
     }
 }
 
-export function postUser(firstName, lastName, email, password) {
+export function postUserAndLogin(firstName, lastName, email, password) {
     return function(dispatch) {
         dispatch({ type: 'POST_USER'})
 
         // Data to be posted
-        const user = { firstName, lastName, email, password};
+        const user = { firstName, lastName, email, password };
 
         // HTTP options
         const options = {
@@ -72,6 +72,28 @@ export function postUser(firstName, lastName, email, password) {
                 // Save user id to sessionStorage
                 const userId = JSON.stringify(data.user.id);
                 sessionStorage.setItem('user', userId);
+            })
+            .then(() => {
+
+                // HTTP options
+                const loginOptions = {
+                    method: 'POST',
+                    headers: { 
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                };
+
+                // Login
+                fetch('/users/login', loginOptions)
+                    .then(loginRes => loginRes.json())
+                    .then(loginData => {
+                        dispatch({ type: 'LOGIN_FULFILLED', payload: loginData.user })
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        dispatch({ type: 'LOGIN_REJECTED', payload: err })
+                    })
             })
             .catch(err => {
                 dispatch({ type: 'POST_USER_REJECTED', payload: err})

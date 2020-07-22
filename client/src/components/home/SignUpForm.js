@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
 import { useState } from 'react';
-import { postUser, login } from '../../actions/userActions';
+import { postUserAndLogin } from '../../actions/userActions';
 import { connect } from 'react-redux';
 
 function SignUpForm(props) {
@@ -21,7 +21,7 @@ function SignUpForm(props) {
             return alert.info('You are already logded in');
         }
 
-        props.dispatch(postUser(firstName, lastName, email, password));
+        props.dispatch(postUserAndLogin(firstName, lastName, email, password));
         props.setSignUp(false);
     }
 
