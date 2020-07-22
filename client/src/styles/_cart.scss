@@ -16,6 +16,10 @@
       display: flex;
       justify-content: center;
       margin: 1rem;
+
+      img {
+        max-width: 110px;
+      }
   }
 
   .cartItemCardText {
@@ -41,4 +45,8 @@
   display: flex;
   justify-content: center;
   margin: 1rem 0;
+}
+
+#removeFromCartBtn {
+  width: 130px;
 }
