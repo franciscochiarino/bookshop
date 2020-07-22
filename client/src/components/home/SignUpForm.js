@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
 import { useState } from 'react';
-import { postUser } from '../../actions/userActions';
+import { postUser, login } from '../../actions/userActions';
 import { connect } from 'react-redux';
 
 function SignUpForm(props) {

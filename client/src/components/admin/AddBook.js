@@ -13,10 +13,12 @@ function AddBook(props) {
     const [price, setPrice] = useState(0);
     const [favorite, setFavorite] = useState(false);
     const [file, setFile] = useState({});
+    const [loading, setLoading] = useState(false);
     const alert = useAlert();
 
     const addBook = async e => {
         e.preventDefault();
+        setLoading(true);
 
         // Prepare file to be uploaded
         const formData = new FormData();
@@ -56,11 +58,13 @@ function AddBook(props) {
             const data = await response.json();
             if (data.success) {
                 alert.success(`${data.book.title} has been added!`);
+                setLoading(false);
                 window.loaction = '/#/users/user';
             }
         }
         catch(err) {
             alert.error('The server is not responding... Please try again later.');
+            setLoading(false);
             console.log(err);
         }
 
@@ -72,6 +76,7 @@ function AddBook(props) {
 
     return (
         <section className="addBook">
+            { loading ? <div className="loading"></div> : null }
             <h3 className="sectionHeading">Add Book</h3>
             <form className="addBookForm" encType="multipart/form-data" onSubmit={addBook}>
 
