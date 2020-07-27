@@ -30,10 +30,10 @@ function AddBook(props) {
 
         // Create book object
         const book = {
-            title,
-            author,
+            title: capitalize(title),
+            author: capitalize(author),
             published,
-            genre,
+            genre: capitalize(genre),
             pages,
             // Relate image with book
             cover: dataFromCover.file.filename,
@@ -71,7 +71,16 @@ function AddBook(props) {
         props.dispatch({
             type: 'UPDATE_BOOKS',
         })
-       
+    }
+
+    const capitalize = string => {
+        let words = string.split(' ');
+        if (words.length >= 2) {
+            const capitalizedWords = words.map(word => word[0].toLocaleUpperCase() + word.substring(1).toLocaleLowerCase());
+            return capitalizedWords.join(' ');
+        } else {
+          return string[0].toLocaleUpperCase() + string.substring(1).toLocaleLowerCase();
+        }
     }
 
     return (

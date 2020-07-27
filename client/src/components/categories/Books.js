@@ -8,7 +8,7 @@ function Books({ books, dispatch, match, addToCart, overview}) {
 
     useEffect(() => {
         setLoading(books.fetching)
-    }, books.fetching);
+    }, [books.fetching]);
 
     useEffect(() => {
         console.log('[Books useEffect]')
