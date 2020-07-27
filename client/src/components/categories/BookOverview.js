@@ -34,7 +34,7 @@ export default function BookOverview({ match, addToCart }) {
                     <p className="text">{book.overview}</p>
                     <p className="price">${book.price}</p>
                     <div className="mainBtn">
-                        <button className="overviewBtn">Add to wish list</button>
+                        {/* <button className="overviewBtn">Add to wish list</button> */}
                         <button className="buyBtn" onClick={() => addToCart(book._id, book.title)}>Add to cart</button>
                     </div>
                 </section>
