@@ -13,7 +13,7 @@ import Cart from './Cart';
 // Actions
 import { getBooks } from '../../actions/booksActions';
 
-function UserProfile({ user, books, removeFromCart, dispatch }) {
+function UserProfile({ user, books, removeFromCart, dispatch, loading }) {
     const [ , , removeCookie] = useCookies(['x-auth']);
 
     useEffect(() => {

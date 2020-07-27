@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookCard from './BookCard';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/booksActions';
 
 function Books({ books, dispatch, match, addToCart, overview}) {
+    const [loading, setLoading] = useState(books.fetching);
+
+    useEffect(() => {
+        setLoading(books.fetching)
+    }, books.fetching);
 
     useEffect(() => {
         console.log('[Books useEffect]')
@@ -54,6 +59,7 @@ function Books({ books, dispatch, match, addToCart, overview}) {
     return (
         <div>
             <section className="Books">
+                { loading ? <div className="loading"></div> : null }
                 {bookCards}
             </section>       
         </div>

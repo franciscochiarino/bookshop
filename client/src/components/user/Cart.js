@@ -8,7 +8,7 @@ function Cart({ books, user, dispatch, removeFromCart }) {
     const alert = useAlert();
 
     // Wait for user.orders
-    if (!user.orders) { return <h3>Loading...</h3> }
+    if (!user.orders) { return <div className="loading"></div> }
     
     let totalPrice = 0;
     

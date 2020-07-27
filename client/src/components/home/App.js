@@ -22,6 +22,7 @@ function App({ user, orders, dispatch }) {
 
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
+    const [loading, setLoading] = useState(orders.fetching);
     const alert = useAlert();
 
     useEffect(() => {
@@ -31,7 +32,11 @@ function App({ user, orders, dispatch }) {
             const id = JSON.parse(data);
             dispatch(getUser(id));
         }
-    }, [orders.shouldUserUpdate, dispatch])
+    }, [orders.shouldUserUpdate, dispatch]);
+
+    useEffect(() => {
+        setLoading(orders.fetching);
+    }, [orders.fetching]);
 
     const openSignUp = () => {
         const data = sessionStorage.getItem('user');
@@ -63,9 +68,9 @@ function App({ user, orders, dispatch }) {
         } 
     }
 
-    const removeFromCart = (orderId, userId) => {
+    const removeFromCart = async (orderId, userId) => {
         dispatch(deleteOrderAndPutUser(orderId, userId));
-        alert.success(`Order removed.`)
+        alert.success('Order removed.');
     }
     
     return (
@@ -81,12 +86,15 @@ function App({ user, orders, dispatch }) {
                 {signUp ? <div className="darkBg"> <SignUpForm setSignUp={setSignUp} /> </div> : null}
                 {login ? <div className="darkBg"> <Login setLogin={setLogin} /> </div> : null}
 
+                {/* Loading */}
+                { loading ? <div className="loading"></div> : null }
+
                 {/* Routes */}
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/books/:genre' render={ (props) => <Books {...props} addToCart={addToCart} /> } />
                     <Route exact path='/books/book/:id' render={ (props) => <BookOverview {...props} addToCart={addToCart} /> } />     
-                    <Route exact path='/users/user' render={ (props) => <UserProfile {...props} removeFromCart={removeFromCart} /> } />
+                    <Route exact path='/users/user' render={ (props) => <UserProfile {...props} removeFromCart={removeFromCart} loading={loading} /> } />
                     <Route exact path='/users/user/settings' render={ (props) => <UserSettings {...props} user={user} dispatch={dispatch} /> } />
                     <Route exact path='/users/user/settings/admin' component={AdminSettings} />
                 </Switch>

@@ -76,8 +76,8 @@ function AddBook(props) {
 
     return (
         <section className="addBook">
-            { loading ? <div className="loading"></div> : null }
             <h3 className="sectionHeading">Add Book</h3>
+            { loading ? <div className="loading"></div> : null }
             <form className="addBookForm" encType="multipart/form-data" onSubmit={addBook}>
 
                 <label htmlFor="title">Title</label>

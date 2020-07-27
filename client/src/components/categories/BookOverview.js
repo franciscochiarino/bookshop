@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 export default function BookOverview({ match, addToCart }) {
-
     const [book, setBook] = useState(null);
 
     useEffect(() => { 
@@ -14,10 +13,14 @@ export default function BookOverview({ match, addToCart }) {
             .then(data => {
                 setBook(data.book);
             })
+            .catch(err => {
+                alert.error('Something went wrong, please try again later.');
+                console.log(err);
+            })
     }  
 
     // This trick is golden
-    if (!book) {return null}
+    if (!book) { return <div className="loading"></div> }
 
     return (
         <section className="BookOverview">
