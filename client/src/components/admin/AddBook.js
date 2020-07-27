@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useAlert } from 'react-alert';
+import { capitalize } from '../../validation';
 
 function AddBook(props) {
     const [title, setTitle] = useState('');
@@ -73,15 +74,6 @@ function AddBook(props) {
         })
     }
 
-    const capitalize = string => {
-        let words = string.split(' ');
-        if (words.length >= 2) {
-            const capitalizedWords = words.map(word => word[0].toLocaleUpperCase() + word.substring(1).toLocaleLowerCase());
-            return capitalizedWords.join(' ');
-        } else {
-          return string[0].toLocaleUpperCase() + string.substring(1).toLocaleLowerCase();
-        }
-    }
 
     return (
         <section className="addBook">
