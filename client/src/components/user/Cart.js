@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useAlert } from 'react-alert';
 import CartItem from './CartItem';
-import { deleteOrderAndPutUser } from '../../actions/ordersActions'
+import { deleteOrderAndPutUser } from '../../actions/ordersActions';
+import { getBooks } from '../../actions/booksActions';
+import { Redirect } from 'react-router-dom';
 
 function Cart({ books, user, dispatch, removeFromCart }) {
     const alert = useAlert();
 
+    useEffect(() => {
+        if (books.length === 0) {
+            dispatch(getBooks());
+        }
+    }, [books.length, dispatch]);
+
+    // Redirect if user is not logged in
+    if (!sessionStorage.getItem('user')) return <Redirect to='/' />
+
     // Wait for user.orders
-    if (!user.orders) { return <div className="loading"></div> }
+    if (!user.orders) return <div className="loading"></div>
+
+    // Wait for books
+    if (books.length === 0) return <div className="loading"></div>
+
     
     let totalPrice = 0;
     
