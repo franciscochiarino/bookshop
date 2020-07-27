@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 export default function BookOverview({ match, addToCart }) {
-
     const [book, setBook] = useState(null);
 
     useEffect(() => { 
@@ -14,10 +13,14 @@ export default function BookOverview({ match, addToCart }) {
             .then(data => {
                 setBook(data.book);
             })
+            .catch(err => {
+                alert.error('Something went wrong, please try again later.');
+                console.log(err);
+            })
     }  
 
     // This trick is golden
-    if (!book) {return null}
+    if (!book) { return <div className="loading"></div> }
 
     return (
         <section className="BookOverview">
@@ -31,7 +34,7 @@ export default function BookOverview({ match, addToCart }) {
                     <p className="text">{book.overview}</p>
                     <p className="price">${book.price}</p>
                     <div className="mainBtn">
-                        <button className="overviewBtn">Add to wish list</button>
+                        {/* <button className="overviewBtn">Add to wish list</button> */}
                         <button className="buyBtn" onClick={() => addToCart(book._id, book.title)}>Add to cart</button>
                     </div>
                 </section>

@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert';
 import { useState } from 'react';
 import { postUserAndLogin } from '../../actions/userActions';
 import { connect } from 'react-redux';
+import { capitalize } from '../../validation';
 
 function SignUpForm(props) {
 
@@ -21,9 +22,15 @@ function SignUpForm(props) {
             return alert.info('You are already logded in');
         }
 
-        props.dispatch(postUserAndLogin(firstName, lastName, email, password));
-        props.setSignUp(false);
+        // Check password
+        if (password.length <= 7) {
+            alert.error('Password has to be at least 8 characters long.')
+        } else {
+            props.dispatch(postUserAndLogin(capitalize(firstName), capitalize(lastName), email, password));
+            props.setSignUp(false);
+        }
     }
+
 
     return (
         <section className="alert">
@@ -39,7 +46,7 @@ function SignUpForm(props) {
                 <input type="text" name="lastName" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}/>
                 
                 <label htmlFor="email"></label>
-                <input type="text" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                <input type="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                 
                 <label htmlFor="password"></label>
                 <input type="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>

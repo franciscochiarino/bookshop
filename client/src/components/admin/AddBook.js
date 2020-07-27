@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useAlert } from 'react-alert';
+import { capitalize } from '../../validation';
 
 function AddBook(props) {
     const [title, setTitle] = useState('');
@@ -30,10 +31,10 @@ function AddBook(props) {
 
         // Create book object
         const book = {
-            title,
-            author,
+            title: capitalize(title),
+            author: capitalize(author),
             published,
-            genre,
+            genre: capitalize(genre),
             pages,
             // Relate image with book
             cover: dataFromCover.file.filename,
@@ -71,13 +72,13 @@ function AddBook(props) {
         props.dispatch({
             type: 'UPDATE_BOOKS',
         })
-       
     }
+
 
     return (
         <section className="addBook">
-            { loading ? <div className="loading"></div> : null }
             <h3 className="sectionHeading">Add Book</h3>
+            { loading ? <div className="loading"></div> : null }
             <form className="addBookForm" encType="multipart/form-data" onSubmit={addBook}>
 
                 <label htmlFor="title">Title</label>

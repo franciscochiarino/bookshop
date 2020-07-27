@@ -68,10 +68,6 @@ export function postUserAndLogin(firstName, lastName, email, password) {
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'POST_USER_FULFILLED', payload: data.user})
-
-                // Save user id to sessionStorage
-                const userId = JSON.stringify(data.user.id);
-                sessionStorage.setItem('user', userId);
             })
             .then(() => {
 
@@ -89,6 +85,10 @@ export function postUserAndLogin(firstName, lastName, email, password) {
                     .then(loginRes => loginRes.json())
                     .then(loginData => {
                         dispatch({ type: 'LOGIN_FULFILLED', payload: loginData.user })
+
+                        // Save user id to sessionStorage
+                        const userId = JSON.stringify(loginData.user.id);
+                        sessionStorage.setItem('user', userId);
                     })
                     .catch(err => {
                         console.log(err)
