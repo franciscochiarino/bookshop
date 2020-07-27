@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { putUser } from '../../actions/userActions';
+import { capitalize } from '../../validation';
 
 export default function UserSettings({ user, dispatch }) {
     const [firstName, setFirstName] = useState('');
@@ -16,7 +17,7 @@ export default function UserSettings({ user, dispatch }) {
         e.preventDefault();
 
         // Put user
-        dispatch(putUser(user.id, firstName, lastName, email))
+        dispatch(putUser(user.id, capitalize(firstName), capitalize(lastName), email))
     }
 
     return (
