@@ -25,7 +25,6 @@ export function login(email, password) {
                 sessionStorage.setItem('user', userId);
             })
             .catch(err => {
-                console.log(err)
                 dispatch({ type: 'LOGIN_REJECTED', payload: err })
             })
             
@@ -77,7 +76,7 @@ export function postUserAndLogin(firstName, lastName, email, password) {
                     };
                     return loginOptions
                 } else {
-                    console.log('user could not be added');
+                    throw new Error('User could not be added.');
                 }
             })
             .then(loginOptions => fetch('/users/login', loginOptions))
@@ -90,7 +89,6 @@ export function postUserAndLogin(firstName, lastName, email, password) {
                 sessionStorage.setItem('user', userId);
             })
             .catch(err => {
-                console.log(err)
                 dispatch({ type: 'POST_USER_AND_LOGIN_REJECTED', payload: err })
             })
     }
@@ -113,7 +111,6 @@ export function putUser( id, firstName, lastName, email) {
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'PUT_USER_FULFILLED', payload: data.user });
-                console.log('res from put user:', data);
                 window.location = '/#/users/user';
             })
             .catch(err => {

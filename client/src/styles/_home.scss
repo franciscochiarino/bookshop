@@ -38,6 +38,16 @@
   }
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+
+    .githubLogo {
+        margin: 0.5rem;
+        width: 40px;
+    }
+}
+
 // Responsiveness
 @media screen and (max-width: 850px) {
     .heroContainer {

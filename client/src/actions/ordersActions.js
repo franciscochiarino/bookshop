@@ -51,7 +51,6 @@ export function postOrderAndPutUser(bookId, userId) {
             .then(putUserRes => putUserRes.json())
             .then(putUserData => {
                 dispatch({ type: 'POST_ORDER_AND_PUT_USER_FULFILLED' })
-                console.log('res from put user:', putUserData);
             })
             .catch(err => {
                 dispatch({ 
@@ -79,7 +78,6 @@ export function updateOrderQuantity(orderId, orderQuantity) {
             .then(res => res.json())
             .then(data => {
                 dispatch({ type: 'UPDATE_ORDER_QUANTITY_FULFILLED' })
-                console.log(data);
             })
             .catch(err => {
                 dispatch({ type: 'UPDATE_ORDER_QUANTITY_REJECTED', payload: err })
@@ -106,13 +104,11 @@ export function deleteOrderAndPutUser(orderId, userId) {
         fetch(`/orders/${orderId}`, deleteOptions)
             .then(deleteRes => deleteRes.json())
             .then(deleteData => {
-                console.log('[order deleted]', deleteData.order);
             })
             // Put user
             .then(() => fetch(`/users/${userId}`, putOptions))
             .then(putRes => putRes.json())
             .then(putData => {
-                console.log('[user put]', putData);
                 dispatch({ type: 'DELETE_ORDER_AND_PUT_USER_FULFILLED'})
             })
             .catch(err => {

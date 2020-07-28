@@ -17,6 +17,8 @@ import UserProfile from '../user/UserProfile';
 import AdminSettings from '../admin/AdminSettings';
 import UserSettings from '../user/UserSettings';
 import Nav from './Nav';
+// Assets
+import githubLogo from '../../assets/github-image.png';
 
 function App({ user, orders, dispatch }) {
 
@@ -87,6 +89,10 @@ function App({ user, orders, dispatch }) {
 
                 {/* Loading */}
                 { loading ? <div className="loading"></div> : null }
+
+                <footer>
+                    <a href="https://github.com/franciscochiarino/bookshop"><img className="githubLogo" src={githubLogo} alt="github"/></a>
+                </footer>
 
                 {/* Routes */}
                 <Switch>
