@@ -27,7 +27,7 @@ exports.getUser = async (req, res, next) => {
 exports.postUser = async (req, res, next) => {
     try {
         const user = new User(req.body);
-        user.save();
+        await user.save();
         res.json({ success: true, user: user});
     }
     catch(err) {

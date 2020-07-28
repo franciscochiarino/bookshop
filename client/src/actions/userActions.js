@@ -49,7 +49,7 @@ export function getUser(id) {
 
 export function postUserAndLogin(firstName, lastName, email, password) {
     return function(dispatch) {
-        dispatch({ type: 'POST_USER'})
+        dispatch({ type: 'POST_USER_AND_LOGIN'})
         // Data to be posted
         const user = { firstName, lastName, email, password };
 
@@ -65,39 +65,34 @@ export function postUserAndLogin(firstName, lastName, email, password) {
         // Post request
         fetch('/users', options)
             .then(res => res.json())
-            .then(data => {
-                dispatch({ type: 'POST_USER_FULFILLED', payload: data.user})
+            .then((data) => {   
+                if (data.success) {
+                    // Set login options
+                    const loginOptions = {
+                        method: 'POST',
+                        headers: { 
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    };
+                    return loginOptions
+                } else {
+                    console.log('user could not be added');
+                }
             })
-            .then(() => {
-                dispatch({ type: 'LOGIN' })
+            .then(loginOptions => fetch('/users/login', loginOptions))
+            .then(loginRes => loginRes.json())
+            .then(loginData => {
+                dispatch({ type: 'POST_USER_AND_LOGIN_FULFILLED', payload: loginData.user })
 
-                // HTTP options
-                const loginOptions = {
-                    method: 'POST',
-                    headers: { 
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                };
-
-                // Login
-                fetch('/users/login', loginOptions)
-                    .then(loginRes => loginRes.json())
-                    .then(loginData => {
-                        dispatch({ type: 'LOGIN_FULFILLED', payload: loginData.user })
-
-                        // Save user id to sessionStorage
-                        const userId = JSON.stringify(loginData.user.id);
-                        sessionStorage.setItem('user', userId);
-                    })
-                    // .catch(err => {
-                    //     console.log(err)
-                    //     dispatch({ type: 'LOGIN_REJECTED', payload: err })
-                    // })
+                // Save user id to sessionStorage
+                const userId = JSON.stringify(loginData.user.id);
+                sessionStorage.setItem('user', userId);
             })
             .catch(err => {
-                dispatch({ type: 'POST_USER_REJECTED', payload: err})
-            })  
+                console.log(err)
+                dispatch({ type: 'POST_USER_AND_LOGIN_REJECTED', payload: err })
+            })
     }
 }
 

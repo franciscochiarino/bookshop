@@ -37,7 +37,6 @@ export function postOrderAndPutUser(bookId, userId) {
 
             .then(postOrderRes => postOrderRes.json())
             .then(postOrderData => {
-                console.log('res from post order:', postOrderData);
                 // Set put request options
                 let put = {
                     method: 'PUT',

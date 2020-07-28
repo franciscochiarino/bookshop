@@ -51,6 +51,18 @@ export default function reducer(state = initialState, action) {
                 user: action.payload
             }
 
+        case 'POST_USER_AND_LOGIN':
+            return {...state, fetching: true}
+
+        case 'POST_USER_AND_LOGIN_REJECTED':
+            return {...state, fetching: false, error: action.payload}
+
+        case 'POST_USER_AND_LOGIN_FULFILLED':
+            return {...state,
+                fetching: false,
+                fetched: true,
+                user: action.payload
+            }
         case 'PUT_USER':
             return {...state, fetching: true}
 
