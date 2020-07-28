@@ -21,7 +21,7 @@ The reason I built it was to practice building web applications from scratch and
 - Users can create an account and add/remove books to a cart.
 - Admins can add books to the database through a simple form.
 - Uploading images to the database is possible and simple thanks to GridFS.
-- Password are encrypted before being saved to the DB with bcrypt.
+- Passwords are encrypted before being saved to the database with bcrypt.
 - Forms are validated with express-validator.
 
 To Do:
