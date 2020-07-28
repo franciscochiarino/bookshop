@@ -26,7 +26,6 @@ function App({ user, orders, dispatch }) {
     const alert = useAlert();
 
     useEffect(() => {
-        console.log('[App useEffect]')
         const data = sessionStorage.getItem('user');
         if (data) {
             const id = JSON.parse(data);

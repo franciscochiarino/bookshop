@@ -11,7 +11,6 @@ function Books({ books, dispatch, match, addToCart, overview}) {
     }, [books.fetching]);
 
     useEffect(() => {
-        console.log('[Books useEffect]')
         if (books.length === 0) {
             dispatch(getBooks())
         }
